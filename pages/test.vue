@@ -1,6 +1,6 @@
 <template>
-    <div>
-        
+    <div class="min-h-screen">
+        <contact2></contact2>
     </div>
 </template>
 <script setup>

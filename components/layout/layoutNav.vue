@@ -1,5 +1,5 @@
 <template >
-    <div class="bg-white py-3">
+    <div class="bg-white py-3 shadow-card1">
         <div class="container z-50 navbar-container flex items-center justify-between">
             <div class="mainLinks flex items-center gap-10 ">
                 <nuxt-link to="/">

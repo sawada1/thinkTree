@@ -7,7 +7,7 @@
         <div class="container mb-[200px] mt-[70px]">
             <h2 class="mb text-[32px] text-primary font-bold text-center"> مستوياتنا </h2>
             <div class="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2">
-                <div class="relative ">
+                <div data-aos="fade-up" data-aos-duration="500" class="relative ">
                     <div class="flex justify-end">
                         <SvgShape1></SvgShape1>
                     </div>
@@ -19,7 +19,7 @@
                             الحركات الأولى، وإتقان اللعب الأساسي </p>
                     </div>
                 </div>
-                <div class="relative top-[50px]">
+                <div data-aos="fade-up" data-aos-duration="800" class="relative top-[50px]">
                     <div class="flex justify-end">
                         <SvgShape1></SvgShape1>
                     </div>
@@ -31,7 +31,7 @@
                             وتطبيق التكتيكات المختلفة لتحسين أدائهم في المباريات. </p>
                     </div>
                 </div>
-                <div class="relative top-[100px]">
+                <div data-aos="fade-up" data-aos-duration="1000" class="relative top-[100px]">
                     <div class="flex justify-end">
                         <SvgShape1></SvgShape1>
                     </div>
@@ -43,7 +43,7 @@
                             متقدمة، وتحليل المواقف بذكاء. </p>
                     </div>
                 </div>
-                <div class="relative top-[150px]">
+                <div data-aos="fade-up" data-aos-duration="1200" class="relative top-[150px]">
                     <div class="flex justify-end">
                         <SvgShape1></SvgShape1>
                     </div>
@@ -58,148 +58,17 @@
             </div>
         </div>
         <plans></plans>
-        <div class="slider-container bg-lightGreen py-10 mt-[70px] ">
-            <div class="container">
-                <div class="flex items-center justify-center gap-5 mb-[24px]">
-                    <h3 class="text-primary text-[32px] font-bold"> ثقتك بنا نابعة من رؤيتنا لتطوير مهارات طفلك بأسلوب
-                        مبتكر يحقق التفوق والتميز! </h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
-                        <path
-                            d="M39.24 17.3522C39.588 17.909 39.8229 18.5289 39.9314 19.1765C40.0398 19.8241 40.0196 20.4867 39.872 21.1265C39.7243 21.7663 39.4521 22.3708 39.0709 22.9053C38.6896 23.4399 38.2068 23.8942 37.65 24.2422C31.5645 28.0327 26.7301 33.5314 23.75 40.0522C26.7594 39.8006 29.7748 40.4631 32.4015 41.9533C35.0282 43.4434 37.1439 45.6917 38.4719 48.404C39.7999 51.1162 40.2782 54.1662 39.8444 57.1548C39.4106 60.1434 38.0848 62.9315 36.0404 65.1543C33.9961 67.377 31.3284 68.931 28.3864 69.6128C25.4445 70.2946 22.3652 70.0725 19.5515 68.9755C16.7379 67.8786 14.3208 65.9579 12.6166 63.4648C10.9124 60.9716 10.0004 58.0222 10 55.0022V54.8672C10.0054 54.4801 10.0221 54.0933 10.05 53.7072C10.095 52.9572 10.185 51.9072 10.36 50.6172C10.71 48.0522 11.395 44.5172 12.78 40.5472C15.54 32.5972 21.13 22.7722 32.35 15.7622C32.9068 15.4142 33.5267 15.1793 34.1743 15.0708C34.8219 14.9624 35.4845 14.9826 36.1243 15.1302C36.7641 15.2779 37.3685 15.5501 37.9031 15.9313C38.4377 16.3126 38.892 16.7954 39.24 17.3522ZM74.24 17.3522C74.588 17.909 74.8229 18.5289 74.9314 19.1765C75.0398 19.8241 75.0196 20.4867 74.872 21.1265C74.7243 21.7663 74.4521 22.3708 74.0709 22.9053C73.6896 23.4399 73.2068 23.8942 72.65 24.2422C66.5645 28.0327 61.73 33.5314 58.75 40.0522C61.7594 39.8006 64.7748 40.4631 67.4015 41.9533C70.0282 43.4434 72.1439 45.6917 73.4719 48.404C74.7999 51.1162 75.2782 54.1662 74.8444 57.1548C74.4106 60.1434 73.0848 62.9315 71.0404 65.1543C68.9961 67.377 66.3284 68.931 63.3865 69.6128C60.4445 70.2946 57.3652 70.0725 54.5515 68.9755C51.7379 67.8786 49.3208 65.9579 47.6166 63.4648C45.9124 60.9716 45.0004 58.0222 45 55.0022V54.8672C45.0054 54.4801 45.0221 54.0933 45.05 53.7072C45.095 52.9572 45.185 51.9072 45.36 50.6172C45.71 48.0522 46.395 44.5172 47.78 40.5472C50.54 32.5972 56.13 22.7722 67.35 15.7622C67.9068 15.4142 68.5267 15.1793 69.1743 15.0708C69.8219 14.9624 70.4845 14.9826 71.1243 15.1302C71.7641 15.2779 72.3685 15.5501 72.9031 15.9313C73.4377 16.3126 73.892 16.7954 74.24 17.3522Z"
-                            fill="#D8FFA0" />
-                    </svg>
-                </div>
-                <ClientOnly>
-                    <swiper-container ref="containerRef">
-                        <swiper-slide v-for="i in 6">
-                            <div
-                                class="box p-[16px] bg-[#FDFDFD] rounded-[8px] shadow-card1 border-[#E1E3E5] border-[1px]">
-                                <div class="head flex items-center justify-between">
-                                    <div class="flex items-center gap-3">
-                                        <img src="/images/placeholder/avatar1.svg" alt="">
-                                        <div class="bg-[#E1E3E5] h-[40px] w-[4px] rounded-[4px]"></div>
-                                        <div class="flex flex-col gap-2">
-                                            <h4 class="font-bold text-black text-[18px]"> يوسف رامي </h4>
-                                            <div class="flex items-center gap-2">
-                                                <svg v-for="i in 5" xmlns="http://www.w3.org/2000/svg" width="13"
-                                                    height="13" viewBox="0 0 13 13" fill="none">
-                                                    <path
-                                                        d="M7.2549 2.0695C6.9289 1.477 6.0709 1.477 5.7444 2.0695C5.31504 2.84969 4.96111 3.66907 4.6874 4.5165C4.67449 4.54965 4.65179 4.57808 4.62231 4.59801C4.59283 4.61793 4.55798 4.62839 4.5224 4.628C3.78888 4.64706 3.05776 4.71992 2.3349 4.846C1.6664 4.9625 1.3719 5.7645 1.8799 6.261C1.9439 6.32366 2.00857 6.386 2.0739 6.448C2.56331 6.91141 3.08151 7.34344 3.6254 7.7415C3.65011 7.7579 3.66883 7.78188 3.67875 7.80983C3.68867 7.83778 3.68925 7.86819 3.6804 7.8965C3.40582 8.72035 3.20962 9.56827 3.0944 10.429C2.9994 11.141 3.7534 11.578 4.3419 11.276C5.05634 10.9098 5.73947 10.4856 6.3844 10.0075C6.41818 9.9836 6.45853 9.97078 6.4999 9.97078C6.54127 9.97078 6.58163 9.9836 6.6154 10.0075C7.25994 10.4861 7.94313 10.9104 8.6579 11.276C9.2464 11.578 10.0004 11.141 9.9054 10.429C9.79035 9.56829 9.59431 8.72036 9.3199 7.8965C9.31106 7.86819 9.31164 7.83778 9.32156 7.80983C9.33147 7.78188 9.35019 7.7579 9.3749 7.7415C9.99114 7.29044 10.5743 6.79584 11.1199 6.2615C11.6279 5.7645 11.3334 4.9625 10.6649 4.846C9.94188 4.7199 9.21059 4.64704 8.4769 4.628C8.44141 4.62829 8.40667 4.61778 8.37729 4.59786C8.34791 4.57795 8.32528 4.54957 8.3124 4.5165C8.03956 3.66874 7.68509 2.84928 7.2549 2.0695Z"
-                                                        fill="#FFD901" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h4 class="font-bold text-[18px] text-black"> 8 سنوات </h4>
-                                </div>
-                                <p class="text-black mt-6">
-                                    الحمد لله تجربة جميلة معاكم ومع برنامج التدريب ويوسف مستفيد جدا من خلاله عشان بيفكر
-                                    في
-                                    الحاجات
-                                    بطريقة مختلفة عن اللي هو عارفها واسلوب الاونلاين كويس جدا انه مدينا حرية اختيار
-                                    الوقت.
-                                </p>
-                            </div>
-                        </swiper-slide>
-                    </swiper-container>
+      
+        <HomeSlider></HomeSlider>
+      
+        <HomeCertificate></HomeCertificate>
 
-                </ClientOnly>
-                <div class="arrows mt-8 flex items-center justify-center gap-8">
-                    <div
-                    @click="swiper.prev()"
-                        class="bg-[#FDFDFD] arrow-prev box rounded-[50%] border-[1px] border-orange w-[40px] h-[40px] flex items-center justify-center transition-all hover:bg-orange">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M4.99959 11H16.1696L11.2896 6.12004C10.8996 5.73004 10.8996 5.09004 11.2896 4.70004C11.3821 4.60733 11.492 4.53379 11.613 4.4836C11.7339 4.43342 11.8636 4.40759 11.9946 4.40759C12.1256 4.40759 12.2552 4.43342 12.3762 4.4836C12.4972 4.53379 12.6071 4.60733 12.6996 4.70004L19.2896 11.29C19.3823 11.3826 19.4558 11.4924 19.506 11.6134C19.5562 11.7344 19.582 11.8641 19.582 11.995C19.582 12.126 19.5562 12.2557 19.506 12.3767C19.4558 12.4976 19.3823 12.6075 19.2896 12.7L12.6996 19.29C12.607 19.3826 12.4971 19.4561 12.3761 19.5062C12.2552 19.5563 12.1255 19.5821 11.9946 19.5821C11.8637 19.5821 11.734 19.5563 11.613 19.5062C11.4921 19.4561 11.3822 19.3826 11.2896 19.29C11.197 19.1975 11.1236 19.0875 11.0735 18.9666C11.0234 18.8456 10.9976 18.716 10.9976 18.585C10.9976 18.4541 11.0234 18.3245 11.0735 18.2035C11.1236 18.0825 11.197 17.9726 11.2896 17.88L16.1696 13H4.99959C4.44959 13 3.99959 12.55 3.99959 12C3.99959 11.45 4.44959 11 4.99959 11Z"
-                                fill="#FFAA01" />
-                        </svg>
-                    </div>
-                    <div
-                    @click="swiper.next()"
-                        class="bg-[#FDFDFD] arrow-next box rounded-[50%] border-[1px] border-orange w-[40px] h-[40px] flex items-center justify-center transition-all hover:bg-orange">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M19.0004 11H7.83041L12.7104 6.12004C13.1004 5.73004 13.1004 5.09004 12.7104 4.70004C12.6179 4.60733 12.508 4.53379 12.387 4.4836C12.2661 4.43342 12.1364 4.40759 12.0054 4.40759C11.8744 4.40759 11.7448 4.43342 11.6238 4.4836C11.5028 4.53379 11.3929 4.60733 11.3004 4.70004L4.71041 11.29C4.61771 11.3826 4.54416 11.4924 4.49398 11.6134C4.4438 11.7344 4.41797 11.8641 4.41797 11.995C4.41797 12.126 4.4438 12.2557 4.49398 12.3767C4.54416 12.4976 4.61771 12.6075 4.71041 12.7L11.3004 19.29C11.393 19.3826 11.5029 19.4561 11.6239 19.5062C11.7448 19.5563 11.8745 19.5821 12.0054 19.5821C12.1363 19.5821 12.266 19.5563 12.387 19.5062C12.5079 19.4561 12.6178 19.3826 12.7104 19.29C12.803 19.1975 12.8764 19.0875 12.9265 18.9666C12.9766 18.8456 13.0024 18.716 13.0024 18.585C13.0024 18.4541 12.9766 18.3245 12.9265 18.2035C12.8764 18.0825 12.803 17.9726 12.7104 17.88L7.83041 13H19.0004C19.5504 13 20.0004 12.55 20.0004 12C20.0004 11.45 19.5504 11 19.0004 11Z"
-                                fill="#FFAA01" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container mt-[70px]">
-            <div class="flex flex-col items-center justify-center gap-5">
-                <h3 class="text-primary text-center text-[32px] font-bold"> يتم منح كل طالب شهادته الخاصة  </h3>
-                <img src="/images/certificate.png" alt="">
-            </div>
-        </div>
-
-        <div class="container mt-[120px] mb-[70px]">
-            <h3 class="text-primary text-center mb-8 text-[32px] font-bold"> هل أنت مستعد لنقل نمو عقل إبنك/بنتك إلى المستوى التالي؟ </h3>
-            <div class="grid grid-cols-1 gap-10 xl:grid-cols-2 lg:grid-cols-2">
-                <div class="form-container flex flex-col gap-5 border-[#E1E3E5] border-[1px] p-[16px] rounded-[8px]">
-                  <div class="input flex flex-col gap-3">
-                    <label class="text-black" for="">
-                        اسم ولي الأمر <span class="text-red"> * </span>    
-                    </label>
-                    <input type="text" class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name="" id="">
-                  </div>
-                  <div class="input flex flex-col gap-3">
-                    <label class="text-black" for="">
-                        اسم ابنك / ابنتك <span class="text-red"> * </span>    
-                    </label>
-                    <input type="text" class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name="" id="">
-                  </div>
-                  <div class="input flex flex-col gap-3">
-                    <label class="text-black" for="">
-                        رقم الهاتف <span class="text-red"> * </span>    
-                    </label>
-                    <input type="text" class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name="" id="">
-                  </div>
-                  <div class="input flex flex-col gap-3">
-                    <label class="text-black" for="">
-                        رسالتك <span class="text-red"> * </span>    
-                    </label>
-                    <textarea rows="5"  class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name="" style="resize: none;" id=""/>
-                  </div>
-                  <button class="bg-orange w-full py-2 justify-center text-white font-bold flex items-center rounded-[4px]"> ارسال </button>
-                </div>
-                <img src="/images/contact.png" alt="">
-            </div>
-
-        </div>
+       <contact></contact>
 
     </div>
 </template>
 <script setup>
-const containerRef = ref(null)
-const slides = ref(Array.from({ length: 10 }))
-const swiper = useSwiper(containerRef, {
-    loop: true,
-    autoplay: {
-        delay: 5000,
-    },
-    spaceBetween: 20,
-    slidesPerView: 3,
-    breakpoints: {
-        '300': {
-            slidesPerView: 1.3,
-            spaceBetween: 30,
-        },
-        '900': {
-            slidesPerView: 2,
-            spaceBetween: 30,
-        },
-        '1024': {
-            slidesPerView: 3,
-            spaceBetween: 30,
-        },
-        '1200': {
-            slidesPerView: 3,
-            spaceBetween: 30,
-        },
-    }
-})
+
 </script>
 <style lang="scss">
 .arrows {

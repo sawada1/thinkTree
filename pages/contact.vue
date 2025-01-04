@@ -1,6 +1,6 @@
 <template>
-    <div>
-        
+    <div class="mt-14">
+        <contact></contact>
     </div>
 </template>
 <script setup>

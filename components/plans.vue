@@ -4,6 +4,7 @@
                 تعليمية ممتعة تناسبه وتطوير مهاراته! </h3>
             <div class="plans-container gap-8 grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3">
                 <div
+                data-aos="fade-up" data-aos-duration="500"
                     class="box relative transition-[0.4s] hover:shadow-card2 hover:border-orange h-[842px] bg-[#FDFDFD] justify-between rounded-[8px] border-[1px] border-[#E1E3E5] p-[16px] flex flex-col">
                     <div>
                         <div class="flex flex-col items-center">
@@ -152,6 +153,7 @@
                     <button class="w-full py-[10px] flex items-center justify-center rounded-[4px] bg-orange text-white font-bold"> اشترك الآن </button>
                 </div>
                 <div
+                data-aos="fade-up" data-aos-duration="800"
                     class="box relative transition-[0.4s] hover:shadow-card2 hover:border-orange h-[842px] bg-[#FDFDFD] justify-between rounded-[8px] border-[1px] border-[#E1E3E5] p-[16px] flex flex-col">
                     <div>
                         <div class="flex flex-col items-center">
@@ -300,6 +302,7 @@
                     <button class="w-full py-[10px] flex items-center justify-center rounded-[4px] bg-orange text-white font-bold"> اشترك الآن </button>
                 </div>
                 <div
+                data-aos="fade-up" data-aos-duration="1000"
                     class="box relative transition-[0.4s] hover:shadow-card2 hover:border-orange h-[842px] bg-[#FDFDFD] justify-between rounded-[8px] border-[1px] border-[#E1E3E5] p-[16px] flex flex-col">
                     <div>
                         <div class="flex flex-col items-center">

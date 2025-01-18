@@ -1,18 +1,69 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import Aura from '@primevue/themes/aura';
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', "@nuxtjs/google-fonts", "nuxt-swiper" , "nuxt-aos"],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    "@nuxtjs/google-fonts",
+    "nuxt-swiper",
+    "nuxt-aos",
+    "@nuxtjs/i18n",
+    "@primevue/nuxt-module"
+  ],
   aos: {
     // Initialize AOS
     once: true, // Animation happens only once
   },
+  primevue: {
+    options: {
+      ripple: true,
+      inputVariant: 'filled',
+      theme: {
+        preset: Aura,
+        options: {
+          prefix: 'p',
+          darkModeSelector: 'system',
+          cssLayer: false
+        }
+      }
+    },
+   
+},
     // Google Fonts Configuration
     googleFonts: {
       families: {
         "IBM Plex Sans Arabic": {
           weight: [400, 500, 600, 700],
         },
+      },
+    },
+    i18n: {
+      locales: [
+        {
+          code: "en",
+          dir: "ltr",
+          name: "English",
+          file: "en.json",
+        },
+        {
+          code: "ar",
+          dir: "rtl",
+          name: "عربي",
+          file: "ar.json",
+        },
+      ],
+      defaultLocale: "ar",
+      lazy: false,
+      langDir: "lang",
+      strategy: "prefix",
+      legacy:false,
+      
+      detectBrowserLanguage: {
+        useCookie: true, // Enable cookie usage
+        cookieKey: "preferredLang", // Name of the cookie
+        redirectOn: "root", // Redirect only on the root path
+        alwaysRedirect: false, // Disable to avoid redirecting every visit
       },
     },
     app: {

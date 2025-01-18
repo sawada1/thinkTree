@@ -2,9 +2,8 @@
       <div class="slider-container bg-lightGreen py-10 mt-[70px] ">
             <div class="container">
                 <div class="flex items-center justify-center gap-5 mb-[24px]">
-                    <h3 class="text-primary text-[32px] font-bold"> ثقتك بنا نابعة من رؤيتنا لتطوير مهارات طفلك بأسلوب
-                        مبتكر يحقق التفوق والتميز! </h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+                    <h3 class="text-primary xl:text-[32px] lg:text-[32px] text-[22px] text-center xl:text-start lg:text-start font-bold"> {{ $t('slide1') }} </h3>
+                    <svg class="hidden xl:block lg:block" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
                         <path
                             d="M39.24 17.3522C39.588 17.909 39.8229 18.5289 39.9314 19.1765C40.0398 19.8241 40.0196 20.4867 39.872 21.1265C39.7243 21.7663 39.4521 22.3708 39.0709 22.9053C38.6896 23.4399 38.2068 23.8942 37.65 24.2422C31.5645 28.0327 26.7301 33.5314 23.75 40.0522C26.7594 39.8006 29.7748 40.4631 32.4015 41.9533C35.0282 43.4434 37.1439 45.6917 38.4719 48.404C39.7999 51.1162 40.2782 54.1662 39.8444 57.1548C39.4106 60.1434 38.0848 62.9315 36.0404 65.1543C33.9961 67.377 31.3284 68.931 28.3864 69.6128C25.4445 70.2946 22.3652 70.0725 19.5515 68.9755C16.7379 67.8786 14.3208 65.9579 12.6166 63.4648C10.9124 60.9716 10.0004 58.0222 10 55.0022V54.8672C10.0054 54.4801 10.0221 54.0933 10.05 53.7072C10.095 52.9572 10.185 51.9072 10.36 50.6172C10.71 48.0522 11.395 44.5172 12.78 40.5472C15.54 32.5972 21.13 22.7722 32.35 15.7622C32.9068 15.4142 33.5267 15.1793 34.1743 15.0708C34.8219 14.9624 35.4845 14.9826 36.1243 15.1302C36.7641 15.2779 37.3685 15.5501 37.9031 15.9313C38.4377 16.3126 38.892 16.7954 39.24 17.3522ZM74.24 17.3522C74.588 17.909 74.8229 18.5289 74.9314 19.1765C75.0398 19.8241 75.0196 20.4867 74.872 21.1265C74.7243 21.7663 74.4521 22.3708 74.0709 22.9053C73.6896 23.4399 73.2068 23.8942 72.65 24.2422C66.5645 28.0327 61.73 33.5314 58.75 40.0522C61.7594 39.8006 64.7748 40.4631 67.4015 41.9533C70.0282 43.4434 72.1439 45.6917 73.4719 48.404C74.7999 51.1162 75.2782 54.1662 74.8444 57.1548C74.4106 60.1434 73.0848 62.9315 71.0404 65.1543C68.9961 67.377 66.3284 68.931 63.3865 69.6128C60.4445 70.2946 57.3652 70.0725 54.5515 68.9755C51.7379 67.8786 49.3208 65.9579 47.6166 63.4648C45.9124 60.9716 45.0004 58.0222 45 55.0022V54.8672C45.0054 54.4801 45.0221 54.0933 45.05 53.7072C45.095 52.9572 45.185 51.9072 45.36 50.6172C45.71 48.0522 46.395 44.5172 47.78 40.5472C50.54 32.5972 56.13 22.7722 67.35 15.7622C67.9068 15.4142 68.5267 15.1793 69.1743 15.0708C69.8219 14.9624 70.4845 14.9826 71.1243 15.1302C71.7641 15.2779 72.3685 15.5501 72.9031 15.9313C73.4377 16.3126 73.892 16.7954 74.24 17.3522Z"
                             fill="#D8FFA0" />
@@ -12,7 +11,7 @@
                 </div>
                 <ClientOnly>
                     <swiper-container ref="containerRef">
-                        <swiper-slide v-for="i , index in 6">
+                        <swiper-slide v-for="item , index in Customer_rate">
                             <div
                             data-aos="fade-up" :data-aos-duration="500 + (index + 1) * 10"
                                 class="box p-[16px] bg-[#FDFDFD] rounded-[8px] shadow-card1 border-[#E1E3E5] border-[1px]">
@@ -21,7 +20,7 @@
                                         <img src="/images/placeholder/avatar1.svg" alt="">
                                         <div class="bg-[#E1E3E5] h-[40px] w-[4px] rounded-[4px]"></div>
                                         <div class="flex flex-col gap-2">
-                                            <h4 class="font-bold text-black text-[18px]"> يوسف رامي </h4>
+                                            <h4 class="font-bold text-black text-[18px]"> {{item?.chield[0]?.name}} </h4>
                                             <div class="flex items-center gap-2">
                                                 <svg v-for="i in 5" xmlns="http://www.w3.org/2000/svg" width="13"
                                                     height="13" viewBox="0 0 13 13" fill="none">
@@ -32,14 +31,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h4 class="font-bold text-[18px] text-black"> 8 سنوات </h4>
+                                    <h4 class="font-bold text-[18px] text-black"> {{ item?.chield[0]?.age }} {{ $t('years') }} </h4>
                                 </div>
                                 <p class="text-black mt-6">
-                                    الحمد لله تجربة جميلة معاكم ومع برنامج التدريب ويوسف مستفيد جدا من خلاله عشان بيفكر
-                                    في
-                                    الحاجات
-                                    بطريقة مختلفة عن اللي هو عارفها واسلوب الاونلاين كويس جدا انه مدينا حرية اختيار
-                                    الوقت.
+                                  {{item?.comment}}
                                 </p>
                             </div>
                         </swiper-slide>
@@ -72,7 +67,12 @@
 
 <script setup>
 const containerRef = ref(null)
-const slides = ref(Array.from({ length: 10 }))
+const slides = ref(Array.from({ length: 10 }));
+let props = defineProps({
+    Customer_rate:{
+       required:true
+    }
+})
 const swiper = useSwiper(containerRef, {
     loop: true,
     autoplay: {

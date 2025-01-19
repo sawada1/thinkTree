@@ -30,6 +30,7 @@
                                                 class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name=""
                                                 id="">
                                                 <div class="text-red"> {{ errors.name }} </div>
+                                                <div class="text-red" v-if="errorData?.name"> {{ errorData?.name[0] }} </div>
                                         </div>
                                         <div class="input flex flex-col gap-3">
                                             <label class="text-black" for="">
@@ -39,6 +40,8 @@
                                                 class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name=""
                                                 id="">
                                                 <div class="text-red"> {{ errors.email }} </div>
+                                                <div class="text-red" v-if="errorData?.email"> {{ errorData?.email[0] }} </div>
+
                                         </div>
                                         <div class="input flex flex-col gap-3">
                                             <label class="text-black" for="">
@@ -48,6 +51,8 @@
                                                 class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name=""
                                                 id="">
                                                 <div class="text-red"> {{ errors.phone }} </div>
+                                                <div class="text-red" v-if="errorData?.phone"> {{ errorData?.phone[0] }} </div>
+
                                         </div>
                                         <div class="input flex flex-col gap-3">
                                             <label class="text-black" for="">
@@ -57,6 +62,8 @@
                                                 class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name=""
                                                 id="">
                                                 <div class="text-red"> {{ errors.child_name }} </div>
+                                                <div class="text-red" v-if="errorData?.child_name"> {{ errorData?.child_name[0] }} </div>
+
     
                                         </div>
                                         <div class="input flex flex-col gap-3">
@@ -67,12 +74,15 @@
                                                 class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name=""
                                                 id="">
                                                 <div class="text-red"> {{ errors.birth_date_of_child }} </div>
+                                                <div class="text-red" v-if="errorData?.birth_date_of_child"> {{ errorData?.birth_date_of_child[0] }} </div>
+
     
                                         </div>
                                         <!-- @click="activateCallback('2')" -->
                                         <button
+                                        :disabled="pending1"
                                         @click="onSubmit(activateCallback)"
-                                            class="bg-orange w-full py-2 justify-center text-white font-bold flex items-center rounded-[4px]">
+                                            class="bg-orange w-full py-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold flex items-center rounded-[4px]">
                                             {{ $t('send') }} </button>
                                     </div>
                                     <!-- <div class="flex pt-6 justify-end">
@@ -84,7 +94,7 @@
                                     <div class="p-[16px] flex flex-col  border-[1px] border-[#E1E3E5] rounded-[8px]">
                                         <h2 class="text-primary font-bold mb-5 text-center"> {{ $t('enterOtp') }} OTP {{ $t('subOn') }} 20100000000000+ {{ $t('or') }} testtest@gmail.com </h2>
                                         <div class="flex items-center justify-center">
-                                            <InputOtp v-model="value3" size="large" />
+                                            <InputOtp v-model="otp" size="large" />
                                         </div>
                                         <div class="flex items-center gap-2 mt-5 mb-5">
                                             <p class="text-[18px] text-[#8E8E8E]"> {{ $t('not1') }} OTP؟  </p>
@@ -95,8 +105,9 @@
                                             <button  @click="activateCallback('1')" class="text-orange underline font-bold text-[18px]"> {{ $t('edit') }} </button>
                                         </div>
                                         <button
-                                        @click="activateCallback('3')"
-                                            class="bg-orange w-full py-2 justify-center text-white font-bold flex items-center rounded-[4px]">
+                                        :disabled="pending2"
+                                        @click="step2()"
+                                            class="bg-orange w-full py-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold flex items-center rounded-[4px]">
                                             {{ $t('confirm2') }} </button>
                                     </div>
                                     <!-- <div class="flex pt-6 justify-between">
@@ -111,28 +122,33 @@
                                      <div class="flex items-center justify-center gap-5 flex-col">
                                         <div class="head flex items-center gap-10">
                                             <span class="text-[#8E8E8E]"> {{ $t('pickDay') }} </span>
-                                            <p class="text-[#242826]"> الأثنين 13 يناير 2025  </p>
+                                            <!-- <p class="text-[#242826]"> الأثنين 13 يناير 2025  </p> -->
                                         </div>
                                         <div class="dates xl:w-[500px] lg:w-[450px] w-[300px] rounded-[8px] flex items-center justify-center bg-[#F1D8C9] border-[1px] border-[#E1E3E5] h-[180px]">
                                            <div class="items-date-container flex items-center gap-3 overflow-x-auto pb-5">
-                                             <button v-for="i in 16" class="flex flex-col gap-2 py-[8px] px-5 rounded-[8px] transition-all hover:bg-orange hover:text-white bg-white items-center text-orange">
-                                                 <span> الأثنين </span>
-                                                 <span> 13 </span>
-                                                 <span> يناير </span>
+                                             <button v-for="i in planData?.groups" @click="group_id = i?.id , day_id = i?.day?.id , getTimes(i?.day?.date)" class="flex flex-col gap-2 py-[8px] px-5 rounded-[8px] transition-all hover:bg-orange hover:text-white bg-white items-center text-orange">
+                                                 <span> {{ i?.day?.name }} </span>
+                                                 <span> {{ returnDate(i?.day?.date).day }} </span>
+                                                 <span> {{ returnDate(i?.day?.date).month }} </span>
                                              </button>
                                            </div>
                                         </div>
+                                        <div class="text-red" v-if="errorData?.group_id"> {{ errorData?.group_id[0] }} </div>
+                                        <div class="text-red" v-if="errorData?.day_id"> {{ errorData?.day_id[0] }} </div>
                                         <div class="times-slot flex items-center flex-wrap gap-5">
-                                          <button v-for="i in 4" class="xl:px-[16px] xl:py-[8px] lg:px-[16px] lg:py-[8px] px-[8px] py-[6px] border-[1px] border-orange rounded-[8px]"> 10:00 ص - 12:00 م </button>
+                                          <button v-for="i , index in timesData" @click="time = i?.id" :class="{'text-white bg-orange': time == i?.id}" class="xl:px-[16px] xl:py-[8px] lg:px-[16px] lg:py-[8px] px-[8px] py-[6px] border-[1px] border-orange rounded-[8px]"> {{ i?.duration }} </button>
                                         </div>
+                                        <div class="text-red" v-if="errorData?.time_id"> {{ errorData?.time_id[0] }} </div>
     
                                         <div class="flex flex-col items-center gap-4 w-full">
-                                            <button class="text-[18px] text-orange font-bold"> {{ $t('pickDate2') }} </button>
+                                            <button @click="Choose_duration_later = 1 , step3()" class="text-[18px] text-orange font-bold"> {{ $t('pickDate2') }} </button>
                                             <button
-                                            @click="activateCallback('4')"
-                                            class="bg-orange w-full py-2 justify-center text-white font-bold flex items-center rounded-[4px]">
+                                            :disabled="pending3"
+                                            @click="Choose_duration_later = 0 , step3()"
+                                            class="bg-orange w-full py-2 disabled:opacity-50 disabled:cursor-not-allowed justify-center text-white font-bold flex items-center rounded-[4px]">
                                             {{ $t('book') }} </button>
                                         </div>
+
     
                                     </div>
                                  </div>
@@ -149,7 +165,7 @@
                 <div
                  v-if="planData"
                 data-aos="fade-up" data-aos-duration="500"
-                    class="box relative transition-[0.4s] hover:shadow-card2 hover:border-orange h-[842px] bg-[#FDFDFD] justify-between rounded-[8px] border-[1px] border-[#E1E3E5] p-[16px] flex flex-col">
+                    class="box relative transition-[0.4s] hover:shadow-card2 hover:border-orange bg-[#FDFDFD] justify-between rounded-[8px] border-[1px] border-[#E1E3E5] p-[16px] flex flex-col">
                     <div>
                         <div class="flex flex-col items-center">
                             <!-- <SvgStep1></SvgStep1> -->
@@ -226,11 +242,84 @@ const [phone, phoneAttrs] = defineField("phone");
 const [email, emailAttrs] = defineField("email");
 
 const checkForm = ref(false);
-const onSubmit = handleSubmit((activateCallback) => {
+let errorData = ref();
+let pending1 = ref(false);
+let pending2 = ref(false);
+let pending3 = ref(false);
+let otp = ref('');
+let group_id = ref();
+let day_id = ref();
+let Choose_duration_later = ref(1);
+const onSubmit = handleSubmit(async(activateCallback) => {
     // console.log(values);
-    currentStep.value = '2';
-    checkForm.value = true;    
+    try{
+        pending1.value = true;
+        let result  = await useApi().post(`order/store/1`,{
+            name: name.value,
+            child_name: child_name.value,
+            birth_date_of_child: birth_date_of_child.value,
+            phone: phone.value,
+            email: email.value,
+        });
+        if(result.status == 200){
+            pending1.value = false;
+            currentStep.value = '2';
+            // checkForm.value = true; 
+            otp.value = result.data.data.otp;  
+            errorData.value = undefined; 
+            
+        }
+    }catch(error){
+        pending1.value = false;
+        errorData.value =  error.response?.data?.errors
+    }
 });
+
+const step2 = async(activateCallback)=>{
+   try{
+    pending2.value = true;
+    let result  = await useApi().post(`order/store/1`,{
+        name: name.value,
+        child_name: child_name.value,
+        birth_date_of_child: birth_date_of_child.value,
+        phone: phone.value,
+        email: email.value,
+        otp: otp.value
+    });
+    if(result.status == 200){
+        currentStep.value = '3';
+        pending2.value = false;
+    }
+}catch(error){
+       pending2.value = false;
+       errorData.value =  error.response?.data?.errors
+   }
+}
+const step3 = async(activateCallback)=>{
+   try{
+    pending3.value = true;
+    let result  = await useApi().post(`order/store/3`,{
+        name: name.value,
+        child_name: child_name.value,
+        birth_date_of_child: birth_date_of_child.value,
+        phone: phone.value,
+        email: email.value,
+        otp: otp.value,
+        Choose_duration_later: Choose_duration_later.value,
+        package_id: route.query.id,
+        group_id:Choose_duration_later.value == 1 ? undefined : group_id.value,
+        day_id:Choose_duration_later.value == 1 ? undefined : day_id.value,
+        time_id:Choose_duration_later.value == 1 ? undefined : time.value,
+    });
+    if(result.status == 200){
+        currentStep.value = '4';
+        pending3.value = false;
+    }
+}catch(error){
+       pending3.value = false;
+       errorData.value =  error.response?.data?.errors
+   }
+}
 
 const check = computed(()=>{
     
@@ -238,22 +327,56 @@ const check = computed(()=>{
 
 const planData = ref();
 const timesData = ref([]);
+const time = ref('');
+const returnDate = (val)=>{
+    const date = new Date(val);
+    
+    const dayOfMonth = date.getDate();
+    
+    console.log(`Day of the month: ${dayOfMonth}`);
+    
+    // Get the short name of the month in English and Arabic
+    const shortMonthEn = date.toLocaleString('en', { month: 'short' }); // English
+    const shortMonthAr = date.toLocaleString('ar', { month: 'short' }); // Arabic
+    
+    // Custom translations
+    const monthTranslations = {
+      en: { Jan: 'Jan', Feb: 'Feb', Mar: 'Mar', Apr: 'Apr', May: 'May', Jun: 'Jun', Jul: 'Jul', Aug: 'Aug', Sep: 'Sep', Oct: 'Oct', Nov: 'Nov', Dec: 'Dec' },
+      ar: { Jan: 'يناير', Feb: 'فبراير', Mar: 'مارس', Apr: 'أبريل', May: 'مايو', Jun: 'يونيو', Jul: 'يوليو', Aug: 'أغسطس', Sep: 'سبتمبر', Oct: 'أكتوبر', Nov: 'نوفمبر', Dec: 'ديسمبر' },
+    };
+    
+    // Translate
+    const translatedMonthEn = monthTranslations.en[shortMonthEn];
+    const translatedMonthAr = monthTranslations.ar[shortMonthEn];
+    
+    console.log(`Translated short month name (English): ${translatedMonthEn}`);
+    console.log(`Translated short month name (Arabic): ${translatedMonthAr}`);
+
+    return{
+        day: dayOfMonth,
+        month: locale.value == 'ar' ? translatedMonthAr : translatedMonthEn
+    }
+
+}
 const getData = async()=>{
     let result  = await useApi().get(`package/${route.query.id}`);
     if(result.status == 200){
         planData.value = result.data.data;
     }
  }
-const getTimes = async()=>{
+const getTimes = async(date)=>{
+
     let result  = await useApi().get(`timeslot` , {params:{
         package_id:route.query.id,
-        date:""
+        date:date
     }});
     if(result.status == 200){
         timesData.value = result.data.data;
     }
  }
  getData();
+
+
 
 // const onSubmit = (activateCallback) =>{
 //     onSubmit2();

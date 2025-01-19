@@ -32,11 +32,15 @@
                  <h4 class="text-orange text-[20px] font-bold"> {{ $t('contact') }}</h4>
                   <div class="flex items-center gap-3">
                       <SvgPhone></SvgPhone>
-                    <span class="text-[#FDFDFD]"> {{ generalData?.whatsapp_number }} </span>
-                  </div>
-                  <div class="flex items-center gap-3">
+                      <a :href="`tel:${generalData?.whatsapp_number}`">
+                        <span class="text-[#FDFDFD]"> {{ generalData?.whatsapp_number }} </span>
+                      </a>
+                    </div>
+                    <div class="flex items-center gap-3">
                       <SvgMail></SvgMail>
-                    <span class="text-[#FDFDFD]"> {{ generalData?.email }} </span>
+                      <a :href="`mailto:${generalData?.email}`">
+                        <span class="text-[#FDFDFD]"> {{ generalData?.email }} </span>
+                      </a>
                   </div>
                  <h4 class="text-orange text-[20px] font-bold"> {{ $t('sub') }} </h4>
 

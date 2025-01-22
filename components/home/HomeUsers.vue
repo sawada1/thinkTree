@@ -1,11 +1,11 @@
 <template>
   <div class="users-container container mt-[70px]">
-            <h3 class="text-center mb-8 text-primary xl:text-[32px] lg:text-[32px] text-[24px] font-bold"> {{ $t('users1') }} </h3>
-            <Vue3Marquee class="mt-8" dir="ltr" :gradient="true" :gradient-color="[255, 255, 255]"
+            <h3 class="text-center mb-8 text-primary xl:text-[32px] lg:text-[32px] text-[26px] font-bold"> {{ $t('users1') }} </h3>
+            <Vue3Marquee duration="25" class="mt-8" dir="ltr" :gradient="true" :gradient-color="[255, 255, 255]"
                 gradient-length="30%">
-                <div class=" flex gap-[20px]">
-                    <div v-for="item in ourheroes" class="flex flex-col mx-5 w-[160px]" dir="rtl">
-                        <img :src="item.image" alt="" class="rounded-t-[8px] object-cover w-full h-[120px]">
+                <div class="grid grid-cols-6  gap-[40px]" :dir=" locale == 'ar' ? 'rtl' : 'ltr' ">
+                    <div v-for="item in ourheroes" class="flex flex-col mx-5 w-full " >
+                        <img :src="item.image" alt="" class="rounded-t-[8px] object-cover w-full h-[140px]">
                         <div class="p-[10px] bg-lightGreen rounded-b-[8px]">
                             <div class="flex items-center gap-2">
                                 <!-- <SvgEgypt></SvgEgypt> -->
@@ -25,16 +25,17 @@
                     </button>
 
                 </nuxt-link>
-                <button
+                <!-- <button
                     class="font-bold border-[1px] border-orange transition-all hover:bg-primary hover:border-primary hover:text-white flex items-center justify-center text-orange w-[140px] py-[10px] rounded-[8px]">
                     {{ $t('more') }}
-                </button>
+                </button> -->
             </div>
 
         </div>
 </template>
 
 <script setup>
+const { locale, setLocale } = useI18n();
 let props = defineProps({
     ourheroes:{
        required:true

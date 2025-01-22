@@ -1,6 +1,6 @@
 <template>
       <div class="container">
-            <h3 class="mb-8 xl:text-[32px] lg:text-[32px] text-[24px] text-primary font-bold text-center"> {{ $t('plansTitle') }} 
+            <h3 class="mb-8 xl:text-[32px] lg:text-[32px] text-[26px] text-primary font-bold text-center"> {{ $t('plansTitle') }} 
             </h3>
             <div class="plans-container gap-8 grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3">
                 <div
@@ -46,7 +46,7 @@
                          
                         </div>
                     </div>
-                    <div class="best bg-[#3BB44A] text-white px-3 py-1 rounded-r-[4px] absolute top-[55px] left-0"> {{ $t('best') }} </div>
+                    <div v-if="item?.featured == 1" class="best bg-[#3BB44A] text-white px-3 py-1 rounded-r-[4px] absolute top-[55px] left-0"> {{ $t('best') }} </div>
                     <nuxt-link :to="localePath({ path: '/order', query:{id: item.id} })" >
                         <button class="w-full py-[10px] flex items-center justify-center rounded-[4px] bg-orange text-white font-bold"> {{ $t('subscribe') }} </button>
                 

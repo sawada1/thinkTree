@@ -21,9 +21,9 @@
                    <nuxt-link class="text-white text-[16px] font-[400] hover:text-orange transition-all" :to="localePath('/plans')">
                     {{ $t('plans') }}
                    </nuxt-link>
-                   <nuxt-link class="text-white text-[16px] font-[400] hover:text-orange transition-all" :to="localePath('/test')">
+                   <a v-if="linkTest?.Test_link" :href="linkTest?.Test_link" target="_blank" class="text-white text-[16px] font-[400] hover:text-orange transition-all" :to="localePath('/test')">
                     {{ $t('test') }}
-                  </nuxt-link>
+                   </a>
                    <nuxt-link class="text-white text-[16px] font-[400] hover:text-orange transition-all" :to="localePath('/contact')">
                   {{ $t('contact') }}
                    </nuxt-link>
@@ -45,11 +45,12 @@
                  <h4 class="text-orange text-[20px] font-bold"> {{ $t('sub') }} </h4>
 
                  <div class="input bg-white rounded-[4px] w-[70%] flex items-center justify-between">
-                   <input type="text" class="outline-none bg-transparent py-1 px-2" :placeholder="$t('enterMail')">
-                   <button class="bg-orange py-1 px-2 rounded-e-[4px]">
+                   <input type="text" v-model="email" @keypress.enter="getNewsLetter()" class="outline-none bg-transparent py-1 px-2" :placeholder="$t('enterMail')">
+                   <button @click="getNewsLetter()" class="bg-orange py-1 px-2 rounded-e-[4px]">
                     <SvgShare></SvgShare>
                    </button>
                  </div>
+                 <span class="text-red" v-if="errorMsg?.email"> {{ errorMsg?.email[0] }} </span>
 
                  <div class="flex items-center gap-5">
                     <div v-if="generalData?.facebook_link" class="w-[40px] h-[40px] flex items-center justify-center border-[1px] border-orange rounded-[50%]">
@@ -81,19 +82,48 @@
     </div>
 </template>
 <script setup>
+import "mosha-vue-toastify/dist/style.css";
 let date = new Date();
 let year = date.getFullYear();
 const localePath = useLocalePath();
 const { locale, setLocale } = useI18n();
-
-const generalData = ref();
- const getData = async()=>{
-    let result  = await useApi().get('footer');
-    if(result.status == 200){
-        generalData.value = result.data.data;
+let props = defineProps(["linkTest" , "generalData"]) 
+let email = ref('');
+let errorMsg = ref();
+let pending = ref(false);
+const getNewsLetter = async()=>{
+  if(email.value != ""){
+    pending.value = true;
+    try{
+      let result = await useApi().post('news-letter',{
+        email: email.value
+      });
+      if(result.status == 200){
+        pending.value = true;
+        errorMsg.value = undefined;
+        email.value = '';
+        const moshaToastify = await import("mosha-vue-toastify");
+        const { createToast } = moshaToastify;
+        createToast(
+            locale.value == "ar"
+              ? "تم التواصل بنجاح "
+              : "Communication was successful",
+            {
+              toastBackgroundColor: "#256D20",
+              position: "top-right",
+              type: "success",
+              transition: "bounce",
+              showIcon: "true",
+              timeout: 4000,
+            }
+          );
+      }
+    } catch(error){
+      errorMsg.value = error.response?.data?.errors
     }
- }
- getData();
+
+  }
+}
 
  watch(()=> locale.value , (val)=>{
   if(val){

@@ -61,13 +61,14 @@
       
         <HomeSlider :Customer_rate="generalData?.Customer_rate"></HomeSlider>
       
-        <HomeCertificate :Certificate="generalData?.Certificate_Image"></HomeCertificate>
+        <HomeCertificate :Certificate_Image="generalData?.Certificate_Image"></HomeCertificate>
 
        <contact></contact>
 
     </div>
 </template>
 <script setup>
+
 const generalData = ref();
  const getData = async()=>{
     let result  = await useApi().get('general');

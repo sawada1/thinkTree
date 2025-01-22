@@ -1,5 +1,5 @@
 <template>
- <div data-aos="fade-up" class="numbers container grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-4 mt-[70px] xl:mt-[120px] lg:mt-[120px] rounded-[16px] bg-lightGreen px-[30px] py-[20px] ">
+ <div data-aos="fade-up" class="numbers container grid grid-cols-2 xl:grid-cols-4 gap-5 lg:grid-cols-4 mt-[70px] xl:mt-[120px] lg:mt-[120px] rounded-[16px] bg-lightGreen px-[30px] py-[20px] ">
             <div class="flex flex-col items-center gap-3">
                 <h3 class="xl:text-[53px] lg:text-[53px] text-[32px] text-primary font-bold"> {{ num1 }}<span class="text-orange">+</span> </h3>
                 <p class="xl:text-[24px] lg:text-[24px] text-center font-bold text-[#8E8E8E]"> {{ $t('stat1') }} </p>

@@ -15,14 +15,14 @@
                    <nuxt-link class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/plans')">
                     {{ $t('plans') }}
                    </nuxt-link>
-                   <nuxt-link class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/test')">
+                   <a v-if="linkTest?.Test_link" :href="linkTest?.Test_link" target="_blank" class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/test')">
                      {{ $t('test') }}
-                   </nuxt-link>
+                   </a>
                 </div>
             </div>
      
             <div class="flex items-center gap-4">
-                <button @click="changeLang()" class="text-orange border-orange border py-[9px] px-3 capitalize font-bold rounded-[8px]">
+                <button @click="changeLang()" class="text-orange hidden xl:block lg:block border-orange border py-[9px] px-3 capitalize font-bold rounded-[8px]">
                     {{ locale == 'ar' ? 'en' : 'ar' }} 
                 </button>
                 <nuxt-link class="hidden xl:block lg:block md:block" :to="localePath('/contact')">
@@ -52,25 +52,34 @@
                    <nuxt-link @click="activeNavMobile = false" class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/plans')">
                    {{ $t('plans') }}
                    </nuxt-link>
-                   <nuxt-link @click="activeNavMobile = false" class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/test')">
+                   <a v-if="linkTest?.Test_link" @click="activeNavMobile = false" :href="linkTest?.Test_link" target="_blank" class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/test')">
                      {{ $t('test') }}
-                </nuxt-link>
-                   <nuxt-link @click="activeNavMobile = false" :to="localePath('/contact')">
-                <button class="font-bold bg-orange flex items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
-                  {{ $t('contact') }}
-                </button>
-            </nuxt-link>
+                   </a>
+                <div class="flex items-center gap-4">
+                  <button @click="changeLang() , activeNavMobile = false" class="text-orange border-orange border py-[9px] px-3 capitalize font-bold rounded-[8px]">
+                  {{ locale == 'ar' ? 'en' : 'ar' }} 
+              </button>
+                     <nuxt-link @click="activeNavMobile = false" :to="localePath('/contact')">
+                  <button class="font-bold bg-orange flex items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
+                    {{ $t('contact') }}
+                  </button>
+              </nuxt-link>
+                  
+                </div>
 
                    
             </div>
         </div>
         <div v-if="activeNavMobile" @click="activeNavMobile = false" class="overlay-nav-mobile z-30 fixed top-0 right-0 left-0 w-screen h-screen block xl:hidden lg:hidden md:hidden"></div>
-    </div>
+      </div>
+   
 </template>
 <script setup>
  let activeNavMobile = ref(false);
  const localePath = useLocalePath();
  const { locale, setLocale } = useI18n();
+ let props = defineProps(["linkTest"]) 
+
 
 const changeLang = async () => {
   if(process.client){

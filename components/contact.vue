@@ -1,6 +1,6 @@
 <template>
      <div class="container mt-[120px] mb-[70px]">
-            <h3 class="text-primary text-center mb-8 xl:text-[32px] lg:text-[32px] text-[28px] font-bold"> {{ $t('contact1') }} </h3>
+            <h3 class="text-primary text-center mb-8 xl:text-[32px] lg:text-[32px] text-[26px] font-bold"> {{ $t('contact1') }} </h3>
             <div class="grid grid-cols-1 gap-10 xl:grid-cols-2 lg:grid-cols-2">
                 <div data-aos="fade-left"  class="form-container flex flex-col gap-5 border-[#E1E3E5] border-[1px] p-[16px] rounded-[8px]">
                   <div class="input flex flex-col gap-3">

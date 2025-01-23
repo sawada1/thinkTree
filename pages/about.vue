@@ -72,9 +72,13 @@
                 </div>
         </div>
     </div>
+    <loading v-if="checkLoader"></loading>
+
 </template>
 <script setup>
+const checkLoader = ref(true);
 let activeTabs = ref([1]);
+
 let num = ref(10)
 const progressWidth = computed(() => {
     return `${Math.round((activeTabs.value.length / 3) * 100)}%`;
@@ -95,9 +99,14 @@ const about_us = ref();
     let result  = await useApi().get('about_us');
     if(result.status == 200){
         about_us.value = result.data.data;
+        setTimeout(() => {
+        checkLoader.value = false;
+    }, 500);
     }
  }
- getData();
+ onMounted(() => {
+     getData();
+ });
 </script>
 <style lang="scss">
 .aboutBox {

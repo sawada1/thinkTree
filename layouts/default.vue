@@ -15,6 +15,7 @@
            </client-only>
 
        </a>
+       <Toast />
    
     <layoutFooter :linkTest="linkTest" :generalData="generalData" />
 </template>

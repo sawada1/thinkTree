@@ -214,15 +214,18 @@
         </div>
 
     </div>
+    <loading v-if="checkLoader"></loading>
+
 </template>
 <script setup>
+import { useForm } from "vee-validate";
+import * as yup from "yup";
 let route = useRoute();
 let id = route.query.id;
 let value3 = ref('');
 let currentStep = ref('1');
+const checkLoader = ref(true);
 
-import { useForm } from "vee-validate";
-import * as yup from "yup";
 const localePath = useLocalePath();
 
 const { locale } = useI18n();
@@ -321,9 +324,6 @@ const step3 = async(activateCallback)=>{
    }
 }
 
-const check = computed(()=>{
-    
-});
 
 const planData = ref();
 const timesData = ref([]);
@@ -362,6 +362,9 @@ const getData = async()=>{
     let result  = await useApi().get(`package/${route.query.id}`);
     if(result.status == 200){
         planData.value = result.data.data;
+        setTimeout(() => {
+            checkLoader.value = false;
+        }, 500);
     }
  }
 const getTimes = async(date)=>{
@@ -374,7 +377,10 @@ const getTimes = async(date)=>{
         timesData.value = result.data.data;
     }
  }
- getData();
+
+ onMounted(() => {
+     getData();
+ });
 
 
 

@@ -44,7 +44,7 @@
                   </div>
                  <h4 class="text-orange text-[20px] font-bold"> {{ $t('sub') }} </h4>
 
-                 <div class="input bg-white rounded-[4px] w-[70%] flex items-center justify-between">
+                 <div class="input bg-white rounded-[4px] xl:w-[80%] lg:w-[80%] flex items-center justify-between">
                    <input type="text" v-model="email" @keypress.enter="getNewsLetter()" class="outline-none bg-transparent py-1 px-2" :placeholder="$t('enterMail')">
                    <button @click="getNewsLetter()" class="bg-orange py-1 px-2 rounded-e-[4px]">
                     <SvgShare></SvgShare>
@@ -80,13 +80,17 @@
             </div>
         </div>
     </div>
+
 </template>
 <script setup>
-import "mosha-vue-toastify/dist/style.css";
+import { useToast } from "primevue/usetoast";
+// import "mosha-vue-toastify/dist/style.css";
+const toast = useToast();
+
 let date = new Date();
 let year = date.getFullYear();
 const localePath = useLocalePath();
-const { locale, setLocale } = useI18n();
+const { locale, setLocale , t } = useI18n();
 let props = defineProps(["linkTest" , "generalData"]) 
 let email = ref('');
 let errorMsg = ref();
@@ -102,21 +106,22 @@ const getNewsLetter = async()=>{
         pending.value = true;
         errorMsg.value = undefined;
         email.value = '';
-        const moshaToastify = await import("mosha-vue-toastify");
-        const { createToast } = moshaToastify;
-        createToast(
-            locale.value == "ar"
-              ? "تم التواصل بنجاح "
-              : "Communication was successful",
-            {
-              toastBackgroundColor: "#256D20",
-              position: "top-right",
-              type: "success",
-              transition: "bounce",
-              showIcon: "true",
-              timeout: 4000,
-            }
-          );
+        toast.add({ severity: 'success', summary: t('success'), detail: '', life: 5000 });
+        // const moshaToastify = await import("mosha-vue-toastify");
+        // const { createToast } = moshaToastify;
+        // createToast(
+        //     locale.value == "ar"
+        //       ? "تم التواصل بنجاح "
+        //       : "Communication was successful",
+        //     {
+        //       toastBackgroundColor: "#256D20",
+        //       position: "top-right",
+        //       type: "success",
+        //       transition: "bounce",
+        //       showIcon: "true",
+        //       timeout: 4000,
+        //     }
+        //   );
       }
     } catch(error){
       errorMsg.value = error.response?.data?.errors

@@ -3,18 +3,18 @@ import Aura from '@primevue/themes/aura';
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/tailwindcss',
-    "@nuxtjs/google-fonts",
-    "nuxt-swiper",
-    "nuxt-aos",
-    "@nuxtjs/i18n",
-    "@primevue/nuxt-module"
-  ],
+  modules: [// "@nuxtjs/google-fonts",
+  '@nuxtjs/tailwindcss', "nuxt-swiper", "nuxt-aos", "@nuxtjs/i18n", "@nuxt/image", "@primevue/nuxt-module", "@nuxtjs/sitemap", "nuxt-gtag", "@nuxtjs/seo"],
   aos: {
     // Initialize AOS
     once: true, // Animation happens only once
   },
+  // sitemap: {
+  //   hostname: 'https://www.example.com',
+  // },
+  // gtag: {
+  //   id: 'G-XXXXXXXXXX', // Your Google Analytics ID
+  // },
   primevue: {
     options: {
       ripple: true,
@@ -31,13 +31,13 @@ export default defineNuxtConfig({
    
 },
     // Google Fonts Configuration
-    googleFonts: {
-      families: {
-        "IBM Plex Sans Arabic": {
-          weight: [400, 500, 600, 700],
-        },
-      },
-    },
+    // googleFonts: {
+    //   families: {
+    //     "IBM Plex Sans Arabic": {
+    //       weight: [400, 500, 600, 700],
+    //     },
+    //   },
+    // },
     i18n: {
       locales: [
         {

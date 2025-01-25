@@ -1,7 +1,7 @@
 <template>
      <div class="container mt-[120px] mb-[70px]">
             <h6 class="text-primary text-center mb-8 xl:text-[32px] lg:text-[32px] text-[26px] font-bold"> {{ $t('contact1') }} </h6>
-            <div class="grid grid-cols-1 gap-10 xl:grid-cols-2 lg:grid-cols-2">
+            <div class="grid grid-cols-1 gap-14 xl:grid-cols-2 lg:grid-cols-2">
                 <div data-aos="fade-left"  class="form-container flex flex-col gap-5 border-[#E1E3E5] border-[1px] p-[16px] rounded-[8px]">
                   <div class="input flex flex-col gap-3">
                     <label class="text-black" for="nameInput">
@@ -38,7 +38,7 @@
                   </div>
                   <button @click="onSubmit" :disabled="pending" class="bg-orange w-full py-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold flex items-center rounded-[4px]"> {{ $t('send') }} </button>
                 </div>
-                <NuxtImg data-aos="fade-right" format="webp" quality="80" loading="lazy" src="/images/contact.png" alt="contact us image" />
+                <NuxtImg data-aos="fade-right" format="webp" quality="80" class="w-full" loading="lazy" src="/images/contact.png" alt="contact us image" />
             </div>
 
         </div>

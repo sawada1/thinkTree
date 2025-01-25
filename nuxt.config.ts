@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: [// "@nuxtjs/google-fonts",
-    '@nuxtjs/tailwindcss', "nuxt-swiper", '@nuxtjs/critters' , "nuxt-aos", 'nuxt-lazy-load', "@nuxtjs/i18n", "@nuxt/image", "@primevue/nuxt-module", "@nuxtjs/sitemap", "nuxt-gtag", "@nuxtjs/seo"],
+    '@nuxtjs/tailwindcss', "nuxt-swiper", '@nuxtjs/critters', "nuxt-aos", 'nuxt-lazy-load', "@nuxtjs/i18n", "@nuxt/image", "@primevue/nuxt-module", "@nuxtjs/sitemap", "nuxt-gtag", "@nuxtjs/seo"],
   aos: {
     // Initialize AOS
     once: true, // Animation happens only once
@@ -116,7 +116,7 @@ export default defineNuxtConfig({
         lang: "ar",
         dir: "rtl",
       },
-      meta:[
+      meta: [
         { charset: 'utf-8' },
         {
           name: 'viewport',
@@ -126,12 +126,37 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'thinkTree home - thinkTree' },
         { name: 'twitter:description', content: 'thinkTree is the best website to learn chess' },
+        { name: 'author', content: 'khaled sawada' },
+        { name: 'robots', content: 'index, follow' },
       ],
       link: [
         // { rel: "icon", type: "image/svg", href: "/favicon.svg" },
       ],
       script: [
-
+        {
+          async: true,
+          innerHTML: `
+        !function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1214734386356861');
+fbq('track', 'PageView');
+        `,
+        },
+        {
+          async: true,
+          innerHTML: `
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1214734386356861&ev=PageView&noscript=1"
+/></noscript>
+        `,
+          
+        },
       ],
     },
   },

@@ -1,12 +1,7 @@
 <template>
     <div class="container mt-10 mb-10">
-        <div v-if="currentStep == '4'" class="flex flex-col gap-5 items-center justify-center">
-            <NuxtImg format="webp" quality="80" loading="lazy" src="/images/thank.png" alt="thank image"  />
-            <h1 class="text-primary text-center xl:text-[32px] lg:text-[32px] text-[24px] mb-10 font-bold"> {{ $t('thank') }} </h1>
-            <nuxt-link class="font-bold bg-orange flex items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]" :to="localePath('/')"> {{ $t('home') }} </nuxt-link>
-
-        </div>
-        <div v-else>
+    
+        <div >
             <h1 class="text-primary text-center xl:text-[32px] lg:text-[32px] text-[24px] mb-10 font-bold"> {{ $t('plans2') }} </h1>
     
             <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 gap-10  ">
@@ -15,8 +10,8 @@
                         <Stepper v-model:value="currentStep" class="basis-[50rem]">
                             <StepList>
                                 <Step value="1"> {{ $t('data') }} </Step>
-                                <Step value="2"> {{ $t('confirm') }} </Step>
-                                <Step value="3"> {{ $t('pickData') }} </Step>
+                                <!-- <Step value="2"> {{ $t('confirm') }} </Step> -->
+                                <Step value="2"> {{ $t('pickData') }} </Step>
                             </StepList>
                             <StepPanels>
                                 <StepPanel v-slot="{ activateCallback }" value="1">
@@ -90,7 +85,7 @@
                                             @click="activateCallback('2')" />
                                     </div> -->
                                 </StepPanel>
-                                <StepPanel v-slot="{ activateCallback }" value="2">
+                                <!-- <StepPanel v-slot="{ activateCallback }" value="2">
                                     <div class="p-[16px] flex flex-col  border-[1px] border-[#E1E3E5] rounded-[8px]">
                                         <h2 class="text-primary font-bold mb-5 text-center"> {{ $t('enterOtp') }} OTP {{ $t('subOn') }} 20100000000000+ {{ $t('or') }} testtest@gmail.com </h2>
                                         <div class="flex items-center justify-center">
@@ -110,14 +105,9 @@
                                             class="bg-orange w-full py-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold flex items-center rounded-[4px]">
                                             {{ $t('confirm2') }} </button>
                                     </div>
-                                    <!-- <div class="flex pt-6 justify-between">
-                                        <Button label="Back" severity="secondary" icon="pi pi-arrow-left"
-                                            @click="activateCallback('1')" />
-                                        <Button label="Next" icon="pi pi-arrow-right" iconPos="right"
-                                            @click="activateCallback('3')" />
-                                    </div> -->
-                                </StepPanel>
-                                <StepPanel v-slot="{ activateCallback }" value="3">
+                           
+                                </StepPanel> -->
+                                <StepPanel v-slot="{ activateCallback }" value="2">
                                  <div class="p-[16px] flex flex-col  border-[1px] border-[#E1E3E5] rounded-[8px]">
                                      <div class="flex items-center justify-center gap-5 flex-col">
                                         <div class="head flex items-center gap-10">
@@ -152,10 +142,10 @@
     
                                     </div>
                                  </div>
-                                    <div class="pt-6">
+                                    <!-- <div class="pt-6">
                                         <Button label="Back" severity="secondary" icon="pi pi-arrow-left"
                                             @click="activateCallback('2')" />
-                                    </div>
+                                    </div> -->
                                 </StepPanel>
                             </StepPanels>
                         </Stepper>
@@ -221,6 +211,7 @@
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 let route = useRoute();
+let router = useRouter();
 const mainUrl = ref(process.client ? `${window.location.origin}${route.fullPath}` : '');
 let id = route.query.id;
 let value3 = ref('');
@@ -279,26 +270,7 @@ const onSubmit = handleSubmit(async(activateCallback) => {
     }
 });
 
-const step2 = async(activateCallback)=>{
-   try{
-    pending2.value = true;
-    let result  = await useApi().post(`order/store/1`,{
-        name: name.value,
-        child_name: child_name.value,
-        birth_date_of_child: birth_date_of_child.value,
-        phone: phone.value,
-        email: email.value,
-        otp: otp.value
-    });
-    if(result.status == 200){
-        currentStep.value = '3';
-        pending2.value = false;
-    }
-}catch(error){
-       pending2.value = false;
-       errorData.value =  error.response?.data?.errors
-   }
-}
+
 const step3 = async(activateCallback)=>{
    try{
     pending3.value = true;
@@ -308,7 +280,6 @@ const step3 = async(activateCallback)=>{
         birth_date_of_child: birth_date_of_child.value,
         phone: phone.value,
         email: email.value,
-        otp: otp.value,
         Choose_duration_later: Choose_duration_later.value,
         package_id: route.query.id,
         group_id:Choose_duration_later.value == 1 ? undefined : group_id.value,
@@ -316,8 +287,12 @@ const step3 = async(activateCallback)=>{
         time_id:Choose_duration_later.value == 1 ? undefined : time.value,
     });
     if(result.status == 200){
-        currentStep.value = '4';
+        // currentStep.value = '4';
         pending3.value = false;
+        if(process.client){
+            window.location.href = result.data.data;
+        }
+        // router.push(localePath('/success'))
     }
 }catch(error){
        pending3.value = false;
@@ -364,12 +339,8 @@ const getData = async()=>{
     if(result.status == 200){
         planData.value = result.data.data;
         useHead({
-      title: `${planData.value?.name} | thinkTree`,
+            title: `${planData.value?.name} | thinkTree`,
       meta: [
-        { name: 'description', content: planData.value?.description},
-        { name: 'keywords', content: 'keyword1, keyword2, keyword3' },
-        { name: 'author', content: 'Your Name or Company' },
-        { name: 'robots', content: 'index, follow' },
         { property: 'og:title', content: `${planData.value?.name} | thinkTree` },
         { property: 'og:description', content: planData.value?.description },
         { property: 'og:image', content: planData.value?.icon },
@@ -392,8 +363,22 @@ const getTimes = async(date)=>{
     }
  }
 
+ const getMeta = async () => {
+    let result = await useApi().get('meta_tags');
+    if (result.status == 200) {
+        useHead({
+            title: `${planData.value?.name} | thinkTree`,
+      meta: [
+        { name: 'description', content: result.data.data?.meta_package },
+        { name: 'keywords', content: result.data.data?.keys },
+      ],
+    });
+    }
+}
+
  onMounted(() => {
      getData();
+     getMeta();
     
  });
 

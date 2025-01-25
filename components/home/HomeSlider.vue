@@ -41,7 +41,7 @@
                     </swiper-container>
 
                 </ClientOnly>
-                <div class="arrows mt-8 flex items-center justify-center gap-8">
+                <div v-if="Customer_rate?.length > 3" class="arrows mt-8 flex items-center justify-center gap-8">
                     <div
                     @click="swiper.prev()"
                         class="bg-[#FDFDFD] arrow-prev ltr:rotate-[180deg] box rounded-[50%] border-[1px] border-orange w-[40px] h-[40px] flex items-center justify-center transition-all hover:bg-orange">

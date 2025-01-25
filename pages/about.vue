@@ -108,22 +108,25 @@ const about_us = ref();
     }
  }
 
- 
- onMounted(() => {
-     getData();
-     useHead({
+ const getMeta = async () => {
+    let result = await useApi().get('meta_tags');
+    if (result.status == 200) {
+        useHead({
       title: `${t('about')} | thinkTree`,
       meta: [
-        { name: 'description', content: t('about2')},
-        { name: 'keywords', content: 'keyword1, keyword2, keyword3' },
-        { name: 'author', content: 'Your Name or Company' },
-        { name: 'robots', content: 'index, follow' },
-        { property: 'og:title', content: `${t('about')} | thinkTree` },
-        { property: 'og:description', content: t('about2') },
-        { property: 'og:image', content: '/images/about.png' },
+        { name: 'description', content: result.data.data?.meta_about_us },
+        { name: 'keywords', content: result.data.data?.keys },
+        { property: 'og:title', content: `${t('about2')} | thinkTree` },
+        { property: 'og:description', content: result.data.data?.meta_about_us },
         { property: 'og:url', content: mainUrl.value },
       ],
     });
+    }
+}
+ 
+ onMounted(() => {
+     getData();
+     getMeta();
  });
 </script>
 <style lang="scss">

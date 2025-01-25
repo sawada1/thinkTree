@@ -49,24 +49,24 @@ const getData = async () => {
         }, 500);
     }
 }
-
-useHead({
+const getMeta = async () => {
+    let result = await useApi().get('meta_tags');
+    if (result.status == 200) {
+        useHead({
       title: `${t('home')} | thinkTree`,
       meta: [
-        { name: 'description', content: 'Your page description goes here.' },
-        { name: 'keywords', content: 'keyword1, keyword2, keyword3' },
-        { name: 'author', content: 'Your Name or Company' },
-        { name: 'robots', content: 'index, follow' },
+        { name: 'description', content: result.data.data?.meta_home },
+        { name: 'keywords', content: result.data.data?.keys },
         { property: 'og:title', content: `${t('home')} | thinkTree` },
-        { property: 'og:description', content: 'Your page description goes here.' },
-        // { property: 'og:image', content: 'https://yourwebsite.com/image.jpg' },
+        { property: 'og:description', content: result.data.data?.meta_home },
         { property: 'og:url', content: mainUrl.value },
       ],
     });
+    }
+}
 
 onMounted(() => {
-    console.log(`${window.location.origin}${route.fullPath}`);
-    
+    getMeta();
     getData();
 
 });

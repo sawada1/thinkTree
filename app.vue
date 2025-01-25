@@ -24,5 +24,7 @@ onMounted(() => {
   } else {
     window.addEventListener('load', loadFont);
   }
+
+  
 });
 </script>

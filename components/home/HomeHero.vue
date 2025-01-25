@@ -17,10 +17,10 @@
                             </button>
                         </nuxt-link>
                     </div>
-                    <NuxtImg width="600" height="400" format="webp" quality="80" loading="lazy" data-aos="fade-right" :src="herosection.image" class="z-20" :alt="herosection.title"/>
+                    <NuxtImg  format="webp" quality="80" loading="lazy" data-aos="fade-right" :src="herosection.image" class="z-20" :alt="herosection.title"/>
                 </div>
             </div>
-            <NuxtImg width="600" height="400" format="webp" quality="80" loading="lazy" src="/images/backHero.png" class="!w-full !h-full absolute top-2" alt="backHero"/>
+            <NuxtImg  format="webp"  loading="lazy" src="/images/backHero.png" class="!w-full !h-full absolute top-2" alt="backHero"/>
         </div>
 </template>
 

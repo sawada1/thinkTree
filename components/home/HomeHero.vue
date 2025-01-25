@@ -17,14 +17,16 @@
                             </button>
                         </nuxt-link>
                     </div>
-                    <img data-aos="fade-right" :src="herosection.image" class="z-20" alt="">
+                    <NuxtImg width="600" height="400" format="webp" quality="80" loading="lazy" data-aos="fade-right" :src="herosection.image" class="z-20" :alt="herosection.title"/>
                 </div>
             </div>
-            <img src="/images/backHero.png" class="w-full h-full absolute top-2" alt="">
+            <NuxtImg width="600" height="400" format="webp" quality="80" loading="lazy" src="/images/backHero.png" class="!w-full !h-full absolute top-2" alt="backHero"/>
         </div>
 </template>
 
 <script setup>
+import { NuxtImg } from '#components';
+
 let props = defineProps({
     herosection:{
         default:{

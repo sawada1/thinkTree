@@ -9,7 +9,7 @@
           </div>
 
       </div>
-       <a v-if="generalData?.whatsapp_number" :href="`https://wa.me/${generalData?.whatsapp_number}`" target="_blank" class="fixed z-40 bottom-[80px] left-5">
+       <a v-if="generalData?.whatsapp_number" aria-label="Whatsapp" :href="`https://wa.me/${generalData?.whatsapp_number}`" target="_blank" class="fixed z-40 bottom-[80px] left-5">
          <client-only>
              <Vue3Lottie :animation-data="whatsappIcon" :height="70" :width="70" />
            </client-only>

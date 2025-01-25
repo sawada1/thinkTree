@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-10 mb-10">
         <div v-if="currentStep == '4'" class="flex flex-col gap-5 items-center justify-center">
-            <img src="/images/thank.png" alt="">
+            <NuxtImg format="webp" quality="80" loading="lazy" src="/images/thank.png" alt="thank image"  />
             <h1 class="text-primary text-center xl:text-[32px] lg:text-[32px] text-[24px] mb-10 font-bold"> {{ $t('thank') }} </h1>
             <nuxt-link class="font-bold bg-orange flex items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]" :to="localePath('/')"> {{ $t('home') }} </nuxt-link>
 
@@ -169,7 +169,7 @@
                     <div>
                         <div class="flex flex-col items-center">
                             <!-- <SvgStep1></SvgStep1> -->
-                             <img :src="planData?.icon" class="w-11 h-11" alt="">
+                             <NuxtImg format="webp" quality="80" loading="lazy" :src="planData?.icon" class="w-11 h-11" :alt="planData?.name" />
                             <span class="block text-[18px] text-dark font-bold my-[8px]"> {{ planData?.name }} </span>
                         </div>
                         <div class="price flex flex-col items-center gap-[8px]">
@@ -190,7 +190,7 @@
                         <h6 class="text-primary font-bold"> {{ $t('whatGet') }} : </h6>
                         <div class="flex flex-col gap-[8px] mt-[8px]">
                             <div v-for="i in planData?.outcomes" class="flex items-center gap-3">
-                                <img :src="i?.full_image_path" class="w-5 h-5" alt="">
+                                <NuxtImg format="webp" quality="80" loading="lazy" :src="i?.full_image_path" class="w-5 h-5" :alt="i?.name" />
                                 <span>  {{ i?.name }}  </span>
                             </div>
                      
@@ -199,7 +199,7 @@
                         <h6 class="text-primary font-bold"> {{ $t('features') }} : </h6>
                         <div class="flex flex-col gap-[8px] mt-[8px]">
                             <div v-for="i in planData?.features" class="flex items-center gap-3">
-                                <img :src="i?.full_image_path" class="w-5 h-5" alt="">
+                                <NuxtImg format="webp" quality="80" loading="lazy" :src="i?.full_image_path" class="w-5 h-5" :alt="i?.name" />
                                 <span>  {{ i?.name }}  </span>    
                             </div>
                          
@@ -221,6 +221,7 @@
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 let route = useRoute();
+const mainUrl = ref(process.client ? `${window.location.origin}${route.fullPath}` : '');
 let id = route.query.id;
 let value3 = ref('');
 let currentStep = ref('1');
@@ -228,7 +229,7 @@ const checkLoader = ref(true);
 
 const localePath = useLocalePath();
 
-const { locale } = useI18n();
+const { locale , t } = useI18n();
 const { errors, handleSubmit, values, resetForm, defineField } = useForm({
     validationSchema: yup.object({
         email: yup.string().email(locale.value == 'ar' ? 'يجب أن يكون البريد الإلكتروني بريدًا إلكترونيًا صالحًا' : 'email must be a valid email').required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
@@ -362,6 +363,19 @@ const getData = async()=>{
     let result  = await useApi().get(`package/${route.query.id}`);
     if(result.status == 200){
         planData.value = result.data.data;
+        useHead({
+      title: `${planData.value?.name} | thinkTree`,
+      meta: [
+        { name: 'description', content: planData.value?.description},
+        { name: 'keywords', content: 'keyword1, keyword2, keyword3' },
+        { name: 'author', content: 'Your Name or Company' },
+        { name: 'robots', content: 'index, follow' },
+        { property: 'og:title', content: `${planData.value?.name} | thinkTree` },
+        { property: 'og:description', content: planData.value?.description },
+        { property: 'og:image', content: planData.value?.icon },
+        { property: 'og:url', content: mainUrl.value },
+      ],
+    });
         setTimeout(() => {
             checkLoader.value = false;
         }, 500);
@@ -380,6 +394,7 @@ const getTimes = async(date)=>{
 
  onMounted(() => {
      getData();
+    
  });
 
 

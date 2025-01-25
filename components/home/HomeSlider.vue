@@ -17,7 +17,7 @@
                                 class="box p-[16px] bg-[#FDFDFD] rounded-[8px] shadow-card1 border-[#E1E3E5] border-[1px]">
                                 <div class="head flex items-center justify-between">
                                     <div class="flex items-center gap-3">
-                                        <img class="xl:w-[60px] xl:h-[60px] lg:w-[60px] lg:h-[60px] w-[40px] h-[40px] rounded-full" :src="item?.chield[0]?.image" alt="">
+                                        <NuxtImg width="600" height="400" format="webp" quality="80" loading="lazy" class="xl:w-[60px] xl:h-[60px] lg:w-[60px] lg:h-[60px] w-[40px] h-[40px] rounded-full" :src="item?.chield[0]?.image" :alt="item?.chield[0]?.name" />
                                         <div class="bg-[#E1E3E5] h-[40px] hidden xl:block lg:block w-[4px] rounded-[4px]"></div>
                                         <div class="flex flex-col gap-2">
                                             <h4 class="font-bold text-black xl:text-[18px] lg:text-[18px] text-[16px]"> {{item?.chield[0]?.name}} </h4>

@@ -1,7 +1,7 @@
 <template>
       <div class="container">
-            <h3 class="mb-8 xl:text-[32px] lg:text-[32px] text-[26px] text-primary font-bold text-center"> {{ $t('plansTitle') }} 
-            </h3>
+            <h6 class="mb-8 xl:text-[32px] lg:text-[32px] text-[26px] text-primary font-bold text-center"> {{ $t('plansTitle') }} 
+            </h6>
             <div class="plans-container gap-8 grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3">
                 <div
                 v-for="item in Packages"
@@ -10,7 +10,7 @@
                     <div>
                         <div class="flex flex-col items-center">
                             <!-- <SvgStep1></SvgStep1> -->
-                             <img :src="item?.icon" class="w-11 h-11" alt="">
+                             <NuxtImg format="webp" quality="80" loading="lazy" :src="item?.icon" class="w-11 h-11" :alt="item?.name" />
                             <span class="block text-[18px] text-dark font-bold my-[8px]"> {{ item?.name }} </span>
                         </div>
                         <div class="price flex flex-col items-center gap-[8px]">
@@ -31,7 +31,7 @@
                         <h6 class="text-primary font-bold"> {{ $t('whatGet') }} : </h6>
                         <div class="flex flex-col gap-[8px] mt-[8px]">
                             <div v-for="i in item?.outcomes" class="flex items-center gap-3">
-                                <img :src="i?.full_image_path" class="w-5 h-5" alt="">
+                                <NuxtImg format="webp" quality="80" loading="lazy" :src="i?.full_image_path" class="w-5 h-5" :alt="i?.name" />
                                 <span>  {{ i?.name }}  </span>
                             </div>
                      
@@ -40,7 +40,7 @@
                         <h6 class="text-primary font-bold"> {{ $t('features') }} : </h6>
                         <div class="flex flex-col gap-[8px] mt-[8px]">
                             <div v-for="i in item?.features" class="flex items-center gap-3">
-                                <img :src="i?.full_image_path" class="w-5 h-5" alt="">
+                                <NuxtImg format="webp" quality="80" loading="lazy" :src="i?.full_image_path" class="w-5 h-5" :alt="i?.name" />
                                 <span>  {{ i?.name }}  </span>    
                             </div>
                          
@@ -58,6 +58,8 @@
 </template>
 
 <script setup>
+import { NuxtImg } from '#components';
+
  const localePath = useLocalePath();
 
 let props = defineProps({

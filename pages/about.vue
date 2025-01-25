@@ -14,7 +14,7 @@
                         <div v-for="item , index in about_us?.TripChild" class="flex  flex-col gap-4">
                             <div @click="toggleTab(index + 1)" class="flex cursor-pointer items-center gap-3">
                                 <!-- <SvgAbout1></SvgAbout1> -->
-                                 <img :src="item?.icon" class="w-[45px] h-[45px]" alt="">
+                                 <NuxtImg format="webp" quality="80" loading="lazy" :src="item?.icon" class="w-[45px] h-[45px]" :alt="item?.name" />
                                 <h4 class="text-orange text-[20px] font-bold"> {{ item?.name }} </h4>
                             </div>
                             <div v-if="activeTabs.includes(index + 1)" data-aos="fade-up"
@@ -42,7 +42,7 @@
                     <div
                     v-for="i in  about_us?.skills"
                         class="bg-white aboutBox px-[16px] pb-[26px] relative text-center pt-[16px] flex flex-col items-center gap-3  rounded-[8px] border-[1px] border-[#E1E3E5]">
-                         <img :src="i?.image" class="w-[70px] h-[70px]" alt="">
+                         <NuxtImg format="webp" quality="80" loading="lazy" :src="i?.image" class="w-[70px] h-[70px]" :alt="i?.name" />
                         <h5 class="text-black font-bold text-[20px]"> {{ i?.name }} </h5>
                         <p> {{ i?.description }} </p>
                         <div class="arrow bg-orange p-3 absolute rounded-full top-[90%]">
@@ -63,7 +63,7 @@
                 $t('about4') }} </h2>
                 <div class="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 gap-8">
                     <div v-for="i in about_us?.visions" class="min-h-[160px] rounded-lg  flex items-center gap-3 shadow-card1 p-[16px]">
-                        <img :src="i?.image" class="w-[60px] h-[60px] rounded-full" alt="">
+                        <NuxtImg format="webp" quality="80" loading="lazy" :src="i?.image" class="w-[60px] h-[60px] rounded-full" :alt="i?.name" />
                         <div class="text flex flex-col gap-3">
                             <h4 class="text-black xl:text-[20px] lg:text-[20px] text-[16px] font-bold"> {{ i?.name }} </h4>
                             <p class="text-black xl:text-[18px] lg:text-[18px] text-[14px] line-clamp-3 hover:line-clamp-none"> {{ i?.description }} </p>
@@ -76,6 +76,9 @@
 
 </template>
 <script setup>
+const route = useRoute();
+const { locale, setLocale , t } = useI18n();
+const mainUrl = ref(process.client ? `${window.location.origin}${route.fullPath}` : '');
 const checkLoader = ref(true);
 let activeTabs = ref([1]);
 
@@ -104,8 +107,23 @@ const about_us = ref();
     }, 500);
     }
  }
+
+ 
  onMounted(() => {
      getData();
+     useHead({
+      title: `${t('about')} | thinkTree`,
+      meta: [
+        { name: 'description', content: t('about2')},
+        { name: 'keywords', content: 'keyword1, keyword2, keyword3' },
+        { name: 'author', content: 'Your Name or Company' },
+        { name: 'robots', content: 'index, follow' },
+        { property: 'og:title', content: `${t('about')} | thinkTree` },
+        { property: 'og:description', content: t('about2') },
+        { property: 'og:image', content: '/images/about.png' },
+        { property: 'og:url', content: mainUrl.value },
+      ],
+    });
  });
 </script>
 <style lang="scss">

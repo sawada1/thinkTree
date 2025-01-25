@@ -1,11 +1,11 @@
 <template>
   <div class="users-container container mt-[70px]">
-            <h3 class="text-center mb-8 text-primary xl:text-[32px] lg:text-[32px] text-[26px] font-bold"> {{ $t('users1') }} </h3>
+            <h2 class="text-center mb-8 text-primary xl:text-[32px] lg:text-[32px] text-[26px] font-bold"> {{ $t('users1') }} </h2>
             <Vue3Marquee duration="25" class="mt-8" dir="ltr" :gradient="true" :gradient-color="[255, 255, 255]"
                 gradient-length="30%">
                 <div class="grid grid-cols-6  gap-[40px]" :dir=" locale == 'ar' ? 'rtl' : 'ltr' ">
                     <div v-for="item in ourheroes" class="flex flex-col mx-5 w-full " >
-                        <img :src="item.image" alt="" class="rounded-t-[8px] object-cover w-full h-[140px]">
+                        <NuxtImg :src="item.image" width="600" height="400" format="webp" quality="80" loading="lazy" :alt="item?.name" class="rounded-t-[8px] object-cover w-full h-[140px]"/>
                         <div class="p-[10px] bg-lightGreen rounded-b-[8px]">
                             <div class="flex items-center gap-2">
                                 <!-- <SvgEgypt></SvgEgypt> -->

@@ -2,8 +2,8 @@
     <div class="bg-white py-3 shadow-card1 sticky top-[0px] z-50">
         <div class="container z-50 navbar-container flex items-center justify-between">
             <div class="mainLinks flex items-center gap-10 ">
-                <nuxt-link :to="localePath('/')">
-                    <img src="/images/logo.svg" alt="">
+                <nuxt-link :to="localePath('/')" aria-label="home">
+                    <NuxtImg format="webp" quality="80" width="130"  class="!h-fit" loading="lazy" src="/images/logo.svg" alt="navbar logo" />
                 </nuxt-link>
                  <div class="hidden items-center gap-10 xl:flex lg:flex md:flex">
                    <nuxt-link class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/')">
@@ -31,7 +31,7 @@
                     </button>
                 </nuxt-link>
             </div>
-            <button @click="activeNavMobile = !activeNavMobile" class=" w-[30px] h-[30px] block xl:hidden lg:hidden md:hidden">
+            <button @click="activeNavMobile = !activeNavMobile" class="bar-icon w-[30px] h-[30px] block xl:hidden lg:hidden md:hidden">
                 
                 <svg v-if="!activeNavMobile" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#000" viewBox="0 0 448 512">
                     <path fill="#000" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32
@@ -75,6 +75,8 @@
    
 </template>
 <script setup>
+import { NuxtImg } from '#components';
+
  let activeNavMobile = ref(false);
  const localePath = useLocalePath();
  const { locale, setLocale } = useI18n();

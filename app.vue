@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ dark: isDarkMode1 }">
+  <div>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -12,14 +12,17 @@ const isDarkMode1 = ref(false);
 const isDarkMode = ref(false);
 
 onMounted(() => {
-  // Check if the device is in dark mode
-  isDarkMode.value = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const loadFont = () => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  };
 
-  // Optionally listen for changes in the system preference
-  window
-    .matchMedia('(prefers-color-scheme: dark)')
-    .addEventListener('change', (event) => {
-      isDarkMode.value = event.matches;
-    });
+  if (document.readyState === 'complete') {
+    loadFont();
+  } else {
+    window.addEventListener('load', loadFont);
+  }
 });
 </script>

@@ -4,7 +4,7 @@
             <div class="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3">
               <div class="flex flex-col items-center mb-5 xl:mb-0 lg:mb-0 xl:items-start lg:items-start text-center xl:text-start lg:text-start gap-5">
                 <nuxt-link :to="localePath('/')">
-                  <img src="/images/logo2.svg" class="w-[105px]" alt="">
+                  <NuxtImg  format="webp" quality="80" loading="lazy" src="/images/logo2.svg" class="w-[105px]" :alt="generalData?.website_description" />
                 </nuxt-link> 
                  <p class="text-[18px] text-white">
                   {{ generalData?.website_description }}
@@ -46,7 +46,7 @@
 
                  <div class="input bg-white rounded-[4px] xl:w-[80%] lg:w-[80%] flex items-center justify-between">
                    <input type="text" v-model="email" @keypress.enter="getNewsLetter()" class="outline-none bg-transparent py-1 px-2" :placeholder="$t('enterMail')">
-                   <button @click="getNewsLetter()" class="bg-orange py-1 px-2 rounded-e-[4px]">
+                   <button @click="getNewsLetter()" class="send-icon bg-orange py-1 px-2 rounded-e-[4px]">
                     <SvgShare></SvgShare>
                    </button>
                  </div>
@@ -54,19 +54,19 @@
 
                  <div class="flex items-center gap-5">
                     <div v-if="generalData?.facebook_link" class="w-[40px] h-[40px] flex items-center justify-center border-[1px] border-orange rounded-[50%]">
-                      <a  :href="generalData?.facebook_link" target="_blank">
+                      <a aria-label="Facebook" :href="generalData?.facebook_link" target="_blank">
 
                         <SvgFacebook></SvgFacebook>
                       </a>
                     </div>
                     <div v-if="generalData?.sms_number" class="w-[40px] h-[40px] flex items-center justify-center border-[1px] border-orange rounded-[50%]">
                       
-                      <a  :href="`https://wa.me/${generalData?.whatsapp_number}`" target="_blank">
+                      <a aria-label="Whatsapp" :href="`https://wa.me/${generalData?.whatsapp_number}`" target="_blank">
                         <SvgWhatsapp></SvgWhatsapp>
                       </a>
                     </div>
                     <div v-if="generalData?.instagram_link" class="w-[40px] h-[40px] flex items-center justify-center border-[1px] border-orange rounded-[50%]">
-                      <a  :href="generalData?.instagram_link" target="_blank">
+                      <a aria-label="Insta" :href="generalData?.instagram_link" target="_blank">
                         <SvgInsta></SvgInsta>
                       </a>
                     </div>

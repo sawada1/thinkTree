@@ -1,11 +1,11 @@
 <template>
 
 <div class="container why-container mt-[70px] xl:mt-[120px] lg:mt-[120px]">
-        <h2 class="mb-8 xl:text-[32px] lg:text-[32px] text-[26px] text-primary font-bold text-center"> {{ $t('why') }} ThinkTree ؟ </h2>
+        <h4 class="mb-8 xl:text-[32px] lg:text-[32px] text-[26px] text-primary font-bold text-center"> {{ $t('why') }} ThinkTree ؟ </h4>
         
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:grid-cols-2">
             <div data-aos="fade-up" data-aos-duration="800" class="order-1">
-                <img   :src="chooseImgSrc" alt="">
+                <NuxtImg width="600" height="400" format="webp" quality="80" loading="lazy"   :src="chooseImgSrc" alt="why choose us" />
                 <!-- <img v-if="chooseImg == 2" data-aos="fade-up" data-aos-duration="800" src="/images/whyBack2.png" alt="">
                 <img v-if="chooseImg == 3" data-aos="fade-up" data-aos-duration="800" src="/images/whyBack3.png" alt="">
                 <img v-if="chooseImg == 4" data-aos="fade-up" data-aos-duration="800" src="/images/whyBack4.png" alt="">

@@ -17,7 +17,7 @@
                             </button>
                         </nuxt-link>
                     </div>
-                    <NuxtImg  format="webp" quality="80" loading="lazy" data-aos="fade-right" :src="herosection.image" class="z-20" :alt="herosection.title"/>
+                    <NuxtImg  format="webp" quality="80" loading="lazy" data-aos="fade-right" :src="herosection.image" class="z-20 w-full" :alt="herosection.title"/>
                 </div>
             </div>
             <NuxtImg  format="webp"  loading="lazy" src="/images/backHero.png" class="!w-full !h-full absolute top-2" alt="backHero"/>

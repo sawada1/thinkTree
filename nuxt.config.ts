@@ -3,15 +3,29 @@ import Aura from '@primevue/themes/aura';
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: [// "@nuxtjs/google-fonts",
-    '@nuxtjs/tailwindcss', "nuxt-swiper", '@nuxtjs/critters', "nuxt-aos", 'nuxt-lazy-load', "@nuxtjs/i18n", "@nuxt/image", "@primevue/nuxt-module", "@nuxtjs/sitemap", "nuxt-gtag", "@nuxtjs/seo"],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    "nuxt-swiper",
+    "nuxt-aos",
+    'nuxt-lazy-load',
+    "@nuxtjs/i18n",
+    "@nuxt/image",
+    "@primevue/nuxt-module",
+    "nuxt-gtag",
+
+  ],
+  ssr: true,
   aos: {
     // Initialize AOS
     once: true, // Animation happens only once
   },
-  // sitemap: {
-  //   hostname: 'https://www.example.com',
-  // },
+  nitro: {
+    preset: 'static',
+    prerender: {
+      crawlLinks: true, // Automatically find and prerender linked pages
+      failOnError: false, // Prevent build from failing if errors occur during prerendering
+    },
+  },
   // gtag: {
   //   id: 'G-XXXXXXXXXX', // Your Google Analytics ID
   // },
@@ -31,17 +45,7 @@ export default defineNuxtConfig({
 
   },
 
-  critical: {
-    inline: true,
-    dimensions: [
-      { width: 375, height: 667 }, // mobile
-      { width: 1920, height: 1080 }, // desktop
-    ],
-    config: {
-      // Default: 'media'
-      preload: 'swap',
-    },
-  },
+
 
   render: {
     static: {
@@ -99,7 +103,7 @@ export default defineNuxtConfig({
     defaultLocale: "ar",
     lazy: false,
     langDir: "lang",
-    strategy: "prefix",
+    strategy: "prefix_and_default",
     legacy: false,
 
     detectBrowserLanguage: {

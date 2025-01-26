@@ -10,17 +10,17 @@
                     </svg>
                 </div>
                 <ClientOnly>
-                    <swiper-container ref="containerRef">
-                        <swiper-slide v-for="item , index in Customer_rate">
+                    <swiper-container ref="containerRef" :class="{ 'swiper-centered': Customer_rate?.length <= 1 }">
+                        <swiper-slide v-for="item , index in Customer_rate" :class="{'flex justify-center':Customer_rate?.length <= 1 }">
                             <div
-                            data-aos="fade-up" :data-aos-duration="500 + (index + 1) * 10"
+                            data-aos="fade-up" :class="{'w-[400px]':Customer_rate?.length <= 1 }" :data-aos-duration="500 + (index + 1) * 10"
                                 class="box p-[16px] bg-[#FDFDFD] rounded-[8px] shadow-card1 border-[#E1E3E5] border-[1px]">
                                 <div class="head flex items-center justify-between">
                                     <div class="flex items-center gap-3">
-                                        <NuxtImg width="600" height="400" format="webp" quality="80" loading="lazy" class="xl:w-[60px] xl:h-[60px] lg:w-[60px] lg:h-[60px] w-[40px] h-[40px] rounded-full" :src="item?.chield[0]?.image" :alt="item?.chield[0]?.name" />
+                                        <NuxtImg v-if="item?.chield" width="600" height="400" format="webp" quality="80" loading="lazy" class="xl:w-[60px] xl:h-[60px] lg:w-[60px] lg:h-[60px] w-[40px] h-[40px] rounded-full" :src="item?.chield[0]?.image" :alt="item?.chield[0]?.name" />
                                         <div class="bg-[#E1E3E5] h-[40px] hidden xl:block lg:block w-[4px] rounded-[4px]"></div>
                                         <div class="flex flex-col gap-2">
-                                            <h4 class="font-bold text-black xl:text-[18px] lg:text-[18px] text-[16px]"> {{item?.chield[0]?.name}} </h4>
+                                            <h4 v-if="item?.chield" class="font-bold text-black xl:text-[18px] lg:text-[18px] text-[16px]"> {{item?.chield[0]?.name}} </h4>
                                             <div class="flex items-center gap-1">
                                                 <svg v-for="i in 5" xmlns="http://www.w3.org/2000/svg" width="13"
                                                     height="13" viewBox="0 0 13 13" fill="none">
@@ -31,7 +31,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h4 class="font-bold xl:text-[18px] lg:text-[18px] text-[16px] text-black"> {{ item?.chield[0]?.age }} {{ $t('years') }} </h4>
+                                    <h4 v-if="item?.chield" class="font-bold xl:text-[18px] lg:text-[18px] text-[16px] text-black"> {{ item?.chield[0]?.age }} {{ $t('years') }} </h4>
                                 </div>
                                 <p class="text-black mt-6">
                                   {{item?.comment}}
@@ -74,29 +74,32 @@ let props = defineProps({
     }
 })
 const swiper = useSwiper(containerRef, {
-    loop: true,
-    autoplay: {
-        delay: 5000,
+  loop: props.Customer_rate?.length > 1,
+  autoplay: props.Customer_rate?.length > 1
+    ? { delay: 5000 }
+    : false,
+  spaceBetween: props.Customer_rate?.length > 1 ? 20 : 0,
+  slidesPerView: props.Customer_rate?.length > 1 ? 3 : 1,
+  breakpoints: {
+    "300": {
+      slidesPerView: props.Customer_rate?.length > 1 ? 1.3 : 1,
+      spaceBetween: props.Customer_rate?.length > 1 ? 30 : 0,
     },
-    spaceBetween: 20,
-    slidesPerView: 3,
-    breakpoints: {
-        '300': {
-            slidesPerView: 1.3,
-            spaceBetween: 30,
-        },
-        '900': {
-            slidesPerView: 2,
-            spaceBetween: 30,
-        },
-        '1024': {
-            slidesPerView: 3,
-            spaceBetween: 30,
-        },
-        '1200': {
-            slidesPerView: 3,
-            spaceBetween: 30,
-        },
-    }
-})
+    "900": {
+      slidesPerView: props.Customer_rate?.length > 1 ? 2 : 1,
+      spaceBetween: props.Customer_rate?.length > 1 ? 30 : 0,
+    },
+    "1024": {
+      slidesPerView: props.Customer_rate?.length > 1 ? 3 : 1,
+      spaceBetween: props.Customer_rate?.length > 1 ? 30 : 0,
+    },
+  },
+});
 </script>
+
+<style>
+.swiper-centered .swiper-wrapper {
+  display: flex;
+  justify-content: center;
+}
+</style>

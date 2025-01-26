@@ -6,7 +6,7 @@ export function useApi(){
     const config = useRuntimeConfig();
     // Create Axios instance with default configuration
     const apiClient: AxiosInstance = axios.create({
-      baseURL:'https://omar-a-mahran.com/api/',
+      baseURL:'https://admin.thinktree.llc/api/',
       headers: {
         'Content-Type': 'application/json',
       },

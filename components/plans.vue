@@ -2,10 +2,11 @@
       <div class="container">
             <h6 class="mb-8 xl:text-[32px] lg:text-[32px] text-[26px] text-primary font-bold text-center"> {{ $t('plansTitle') }} 
             </h6>
-            <div class="plans-container gap-8 grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3">
+            <div class="plans-container gap-8 grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3" :class="{'!flex justify-center':Packages?.length <= 1 }" >
                 <div
                 v-for="item in Packages"
                 data-aos="fade-up" data-aos-duration="500"
+                :class="{'w-[370px]':Packages?.length <= 1 }"
                     class="box relative transition-[0.4s] hover:shadow-card2 hover:border-orange h-[842px] bg-[#FDFDFD] justify-between rounded-[8px] border-[1px] border-[#E1E3E5] p-[16px] flex flex-col">
                     <div>
                         <div class="flex flex-col items-center">

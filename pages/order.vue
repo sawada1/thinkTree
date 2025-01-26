@@ -42,9 +42,10 @@
                                             <label class="text-black" for="">
                                                {{ $t('phone2') }} <span class="text-red"> * </span>
                                             </label>
-                                            <input v-model="phone" type="text"
+                                            <vue-tel-input v-model="phone" @input="onInput"  :auto-format="true" class="" />
+                                            <!-- <input v-model="phone" type="text"
                                                 class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name=""
-                                                id="">
+                                                id=""> -->
                                                 <div class="text-red"> {{ errors.phone }} </div>
                                                 <div class="text-red" v-if="errorData?.phone"> {{ errorData?.phone[0] }} </div>
 
@@ -235,6 +236,14 @@ const [child_name, child_nameAttrs] = defineField("child_name");
 const [birth_date_of_child, birth_date_of_childAttrs] = defineField("birth_date_of_child");
 const [phone, phoneAttrs] = defineField("phone");
 const [email, emailAttrs] = defineField("email");
+const validNumber = ref(false);
+const onInput = (value, data) => {
+  if (data) {
+    console.log(data);
+    phone.value = data?.number;
+    validNumber.value = data?.valid
+  }
+};
 
 const checkForm = ref(false);
 let errorData = ref();

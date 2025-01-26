@@ -134,7 +134,7 @@ export default defineNuxtConfig({
         { name: 'robots', content: 'index, follow' },
       ],
       link: [
-        // { rel: "icon", type: "image/svg", href: "/favicon.svg" },
+        { rel: "icon", type: "image/svg", href: "/favicon.ico" },
       ],
       script: [
         {
@@ -164,7 +164,7 @@ src="https://www.facebook.com/tr?id=1214734386356861&ev=PageView&noscript=1"
       ],
     },
   },
-  plugins: ['~/plugins/Vue3Marquee.client.ts'],
+  plugins: ['~/plugins/Vue3Marquee.client.ts' , '~/plugins/vue-tel-input.ts'],
 
   css: [
     "~/assets/styles/main.scss"

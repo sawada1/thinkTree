@@ -29,7 +29,7 @@
           </label>
           <vue-tel-input v-model="phone" @input="onInput"  :auto-format="true" class="" />
           <!-- <input type="text" v-model="phone" class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name="phoneInput" id="phoneInput"> -->
-          <div class="text-red"> {{ errors.phone }} </div>
+          <!-- <div class="text-red"> {{ errors.phone }} </div> -->
           <div class="text-red" v-if="errorsData?.phone"> {{ errorsData?.phone[0] }} </div>
         </div>
         <div class="input flex flex-col gap-3">
@@ -68,7 +68,7 @@ const { errors, handleSubmit, values, resetForm, defineField } = useForm({
     parent_name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
     child_name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
     message: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-    phone: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+    phone: yup.string()
   }),
 });
 const [parent_name, parent_nameAttrs] = defineField("parent_name");
@@ -78,7 +78,9 @@ const [message, messageAttrs] = defineField("message");
 let errorsData = ref();
 const countryCode = ref('');
 const validNumber = ref(false);
+const isMounted = ref(false);
 const onInput = (value, data) => {
+  if (!isMounted.value) return;
   if (data) {
     console.log(data);
     phone.value = data?.number;
@@ -95,6 +97,7 @@ const onSubmit = handleSubmit(async () => {
     if (result.status == 200) {
       pending.value = false;
       toast.add({ severity: 'success', summary: t('success'), detail: '', life: 5000 });
+      phone.value = '';
       resetForm({
         values: {
           parent_name: "",
@@ -109,6 +112,14 @@ const onSubmit = handleSubmit(async () => {
     pending.value = false;
     errorsData.value = error.response?.data?.errors;
   }
+});
+
+onMounted(() => {
+  document.querySelector('.vue-tel-input input').placeholder = ''
+  setTimeout(() => {
+    isMounted.value = true;
+  
+  }, 1000);
 });
 
 </script>

@@ -115,7 +115,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "think tree",
+      title: "Thinktree",
       htmlAttrs: {
         lang: "ar",
         dir: "rtl",

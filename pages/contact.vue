@@ -18,7 +18,7 @@ onMounted(() => {
 });
 
 useHead({
-      title: `${t('contact')} | thinkTree`,
+      title: `${t('contact')} | ThinkTree`,
       meta: [
         { name: 'description', content: t('contact')},
         { name: 'keywords', content: 'keyword1, keyword2, keyword3' },

@@ -53,7 +53,7 @@ const getMeta = async () => {
     let result = await useApi().get('meta_tags');
     if (result.status == 200) {
         useHead({
-      title: `${t('home')} | thinkTree`,
+      title: `${t('home')} | ThinkTree`,
       meta: [
         { name: 'description', content: result.data.data?.meta_home },
         { name: 'keywords', content: result.data.data?.keys },

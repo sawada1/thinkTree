@@ -112,7 +112,7 @@ const about_us = ref();
     let result = await useApi().get('meta_tags');
     if (result.status == 200) {
         useHead({
-      title: `${t('about')} | thinkTree`,
+      title: `${t('about')} | ThinkTree`,
       meta: [
         { name: 'description', content: result.data.data?.meta_about_us },
         { name: 'keywords', content: result.data.data?.keys },

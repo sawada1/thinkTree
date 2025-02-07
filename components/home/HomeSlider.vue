@@ -22,7 +22,7 @@
                                         <div class="flex flex-col gap-2">
                                             <h4 v-if="item?.chield" class="font-bold text-black xl:text-[18px] lg:text-[18px] text-[16px]"> {{item?.chield[0]?.name}} </h4>
                                             <div class="flex items-center gap-1">
-                                                <svg v-for="i in 5" xmlns="http://www.w3.org/2000/svg" width="13"
+                                                <svg v-for="i in item?.rate" xmlns="http://www.w3.org/2000/svg" width="13"
                                                     height="13" viewBox="0 0 13 13" fill="none">
                                                     <path
                                                         d="M7.2549 2.0695C6.9289 1.477 6.0709 1.477 5.7444 2.0695C5.31504 2.84969 4.96111 3.66907 4.6874 4.5165C4.67449 4.54965 4.65179 4.57808 4.62231 4.59801C4.59283 4.61793 4.55798 4.62839 4.5224 4.628C3.78888 4.64706 3.05776 4.71992 2.3349 4.846C1.6664 4.9625 1.3719 5.7645 1.8799 6.261C1.9439 6.32366 2.00857 6.386 2.0739 6.448C2.56331 6.91141 3.08151 7.34344 3.6254 7.7415C3.65011 7.7579 3.66883 7.78188 3.67875 7.80983C3.68867 7.83778 3.68925 7.86819 3.6804 7.8965C3.40582 8.72035 3.20962 9.56827 3.0944 10.429C2.9994 11.141 3.7534 11.578 4.3419 11.276C5.05634 10.9098 5.73947 10.4856 6.3844 10.0075C6.41818 9.9836 6.45853 9.97078 6.4999 9.97078C6.54127 9.97078 6.58163 9.9836 6.6154 10.0075C7.25994 10.4861 7.94313 10.9104 8.6579 11.276C9.2464 11.578 10.0004 11.141 9.9054 10.429C9.79035 9.56829 9.59431 8.72036 9.3199 7.8965C9.31106 7.86819 9.31164 7.83778 9.32156 7.80983C9.33147 7.78188 9.35019 7.7579 9.3749 7.7415C9.99114 7.29044 10.5743 6.79584 11.1199 6.2615C11.6279 5.7645 11.3334 4.9625 10.6649 4.846C9.94188 4.7199 9.21059 4.64704 8.4769 4.628C8.44141 4.62829 8.40667 4.61778 8.37729 4.59786C8.34791 4.57795 8.32528 4.54957 8.3124 4.5165C8.03956 3.66874 7.68509 2.84928 7.2549 2.0695Z"
@@ -78,20 +78,20 @@ const swiper = useSwiper(containerRef, {
   autoplay: props.Customer_rate?.length > 1
     ? { delay: 5000 }
     : false,
-  spaceBetween: props.Customer_rate?.length > 1 ? 20 : 0,
-  slidesPerView: props.Customer_rate?.length > 1 ? 3 : 1,
+//   spaceBetween:  20 ,
+//   slidesPerView:  3 ,
   breakpoints: {
     "300": {
-      slidesPerView: props.Customer_rate?.length > 1 ? 1.3 : 1,
-      spaceBetween: props.Customer_rate?.length > 1 ? 30 : 0,
+      slidesPerView:  1.3,
+      spaceBetween:  30 ,
     },
     "900": {
-      slidesPerView: props.Customer_rate?.length > 1 ? 2 : 1,
-      spaceBetween: props.Customer_rate?.length > 1 ? 30 : 0,
+      slidesPerView: 2 ,
+      spaceBetween:  30 ,
     },
     "1024": {
-      slidesPerView: props.Customer_rate?.length > 1 ? 3 : 1,
-      spaceBetween: props.Customer_rate?.length > 1 ? 30 : 0,
+      slidesPerView:3,
+      spaceBetween: 30,
     },
   },
 });

@@ -10,7 +10,28 @@
 </template>
 <script setup>
 const localePath = useLocalePath();
+let route = useRoute();
+let router = useRouter();
+let id = route.query.id;
 
+const successFunc = async()=>{
+    if(process.client){
+        let id = localStorage.getItem('orderId')
+        let result  = await useApi().post(`order/${id}`,{
+            order_id_pay: route.query.order_id_pay_mob,
+            merchant_id:route.query.merchant_id
+        });
+        if(result.status >= 200){
+            localStorage.removeItem("orderId");
+            setTimeout(() => {
+                router.push(localePath('/'));
+            }, 500);
+        }
+    }
+}
+onMounted(() => {
+    successFunc(); 
+});
 </script>
 <style lang="">
     

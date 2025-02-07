@@ -25,7 +25,7 @@ const mainUrl = ref(process.client ? `${window.location.origin}${route.fullPath}
  onMounted(() => {
      getData();
      useHead({
-      title: `${t('plans')} | thinkTree`,
+      title: `${t('plans')} | ThinkTree`,
       meta: [
         { name: 'description', content: t('plans')},
         { name: 'keywords', content: 'keyword1, keyword2, keyword3' },

@@ -9,9 +9,9 @@
                     <div class="card flex justify-center">
                         <Stepper v-model:value="currentStep" class="basis-[50rem]">
                             <StepList>
-                                <Step value="1"> {{ $t('data') }} </Step>
+                                <Step value="1" disabled> {{ $t('data') }} </Step>
                                 <!-- <Step value="2"> {{ $t('confirm') }} </Step> -->
-                                <Step value="2"> {{ $t('pickData') }} </Step>
+                                <Step value="2" disabled> {{ $t('pickData') }} </Step>
                             </StepList>
                             <StepPanels>
                                 <StepPanel v-slot="{ activateCallback }" value="1">
@@ -46,7 +46,7 @@
                                             <!-- <input v-model="phone" type="text"
                                                 class="outline-none border-[#E1E3E5] border-[1px] rounded-[4px] p-1" name=""
                                                 id=""> -->
-                                                <div class="text-red"> {{ errors.phone }} </div>
+                                                <!-- <div class="text-red"> {{ errors.phone }} </div> -->
                                                 <div class="text-red" v-if="errorData?.phone"> {{ errorData?.phone[0] }} </div>
 
                                         </div>
@@ -228,7 +228,7 @@ const { errors, handleSubmit, values, resetForm, defineField } = useForm({
         name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
         child_name: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
         birth_date_of_child: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
-        phone: yup.string().required(locale.value == 'ar' ? 'هذا الحقل مطلوب' : 'this field is required'),
+        phone: yup.string(),
     }),
 });
 const [name, nameAttrs] = defineField("name");
@@ -376,7 +376,7 @@ const getTimes = async(date)=>{
     let result = await useApi().get('meta_tags');
     if (result.status == 200) {
         useHead({
-            title: `${planData.value?.name} | thinkTree`,
+            title: `${planData.value?.name} | ThinkTree`,
       meta: [
         { name: 'description', content: result.data.data?.meta_package },
         { name: 'keywords', content: result.data.data?.keys },
@@ -386,6 +386,8 @@ const getTimes = async(date)=>{
 }
 
  onMounted(() => {
+     document.querySelector('.vue-tel-input input').placeholder = '';
+     localStorage.setItem('orderId', route.query.id);
      getData();
      getMeta();
     

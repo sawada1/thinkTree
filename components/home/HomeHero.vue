@@ -30,9 +30,9 @@ import { NuxtImg } from '#components';
 let props = defineProps({
     herosection:{
         default:{
-            image:"/images/heroMain.png",
-            title:" خطوة بخطوة على رقعة الشطرنج.... نحو مستقبل أكثر ذكاءً ",
-            description:"نحن نؤمن أن داخل كل طفل بطل ينتظر أن يظهر، والشطرنج هو المفتاح!نحو عالم ممتع ومبتكر، نساعد ابنك على تطوير التفكير الاستراتيجي، بناء ثقته بنفسه، واكتساب مهارات تدوم مدى الحياة."
+            image:"",
+            title:" ",
+            description:""
         }
     }
 })

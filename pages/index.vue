@@ -2,7 +2,8 @@
     <div class="">
         <HomeHero :herosection="generalData?.herosection"></HomeHero>
         <HomeUsers :ourheroes="generalData?.ourheroes"></HomeUsers>
-        <HomeNumbers></HomeNumbers>
+        <HomeNumbers :numbers="generalData?.numbers" :targetNumbers="targetNumbers"></HomeNumbers>
+        <HomeAchievement :Achievement="generalData?.Achievement"></HomeAchievement>
         <HomeWhy :whythinktree="generalData?.whythinktree"></HomeWhy>
         <div class="container mb-[200px] mt-[70px]">
             <h4 class="mb text-[32px] text-primary font-bold text-center"> {{ $t('levels') }} </h4>
@@ -40,10 +41,15 @@ const generalData = ref();
 const route = useRoute();
 const { locale, setLocale , t } = useI18n();
 const mainUrl = ref(process.client ? `${window.location.origin}${route.fullPath}` : '');
+let targetNumbers = ref([0, 0, 0, 0]); 
 const getData = async () => {
     let result = await useApi().get('general');
     if (result.status == 200) {
         generalData.value = result.data.data;
+  targetNumbers.value[0] = generalData.value?.numbers?.parents_experiment;
+  targetNumbers.value[1] = generalData.value?.numbers?.training_hours;
+  targetNumbers.value[2] = generalData.value?.numbers?.our_heroes;
+  targetNumbers.value[3] = generalData.value?.numbers?.heroes_rate;
         setTimeout(() => {
             checkLoader.value = false;
         }, 500);

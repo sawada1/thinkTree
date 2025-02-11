@@ -14,13 +14,13 @@
                         <swiper-slide v-for="item , index in Customer_rate" :class="{'flex justify-center':Customer_rate?.length <= 1 }">
                             <div
                             data-aos="fade-up" :class="{'w-[400px]':Customer_rate?.length <= 1 }" :data-aos-duration="500 + (index + 1) * 10"
-                                class="box p-[16px] bg-[#FDFDFD] rounded-[8px] shadow-card1 border-[#E1E3E5] border-[1px]">
+                                class="box p-[16px] bg-[#FDFDFD] rounded-[8px] h-[200px] shadow-card1 border-[#E1E3E5] border-[1px]">
                                 <div class="head flex items-center justify-between">
                                     <div class="flex items-center gap-3">
-                                        <NuxtImg v-if="item?.chield" width="600" height="400" format="webp" quality="80" loading="lazy" class="xl:w-[60px] xl:h-[60px] lg:w-[60px] lg:h-[60px] w-[40px] h-[40px] rounded-full" :src="item?.chield[0]?.image" :alt="item?.chield[0]?.name" />
+                                        <NuxtImg v-if="item?.chield" width="600" height="400" format="webp" quality="80" loading="lazy" class="xl:w-[60px] xl:h-[60px] lg:w-[60px] lg:h-[60px] w-[40px] h-[40px] rounded-full" :src="item?.chield?.image" :alt="item?.chield?.name" />
                                         <div class="bg-[#E1E3E5] h-[40px] hidden xl:block lg:block w-[4px] rounded-[4px]"></div>
                                         <div class="flex flex-col gap-2">
-                                            <h4 v-if="item?.chield" class="font-bold text-black xl:text-[18px] lg:text-[18px] text-[16px]"> {{item?.chield[0]?.name}} </h4>
+                                            <h4 v-if="item?.chield" class="font-bold text-black xl:text-[18px] lg:text-[18px] text-[16px]"> {{item?.chield?.name}} </h4>
                                             <div class="flex items-center gap-1">
                                                 <svg v-for="i in item?.rate" xmlns="http://www.w3.org/2000/svg" width="13"
                                                     height="13" viewBox="0 0 13 13" fill="none">
@@ -31,10 +31,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h4 v-if="item?.chield" class="font-bold xl:text-[18px] lg:text-[18px] text-[16px] text-black"> {{ item?.chield[0]?.age }} {{ $t('years') }} </h4>
+                                    <h4 v-if="item?.chield" class="font-bold xl:text-[18px] lg:text-[18px] text-[16px] text-black"> {{ item?.chield?.age }} {{ $t('years') }} </h4>
                                 </div>
-                                <p class="text-black mt-6">
-                                  {{item?.comment}}
+                                <p class="text-black line-clamp-3 mt-6">
+                                  {{ item?.comment}}
                                 </p>
                             </div>
                         </swiper-slide>

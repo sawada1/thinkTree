@@ -14,7 +14,7 @@
                         <swiper-slide v-for="item , index in Customer_rate" :class="{'flex justify-center':Customer_rate?.length <= 1 }">
                             <div
                             data-aos="fade-up" :class="{'w-[400px]':Customer_rate?.length <= 1 }" :data-aos-duration="500 + (index + 1) * 10"
-                                class="box p-[16px] bg-[#FDFDFD] rounded-[8px] h-[200px] shadow-card1 border-[#E1E3E5] border-[1px]">
+                                class="box p-[16px] bg-[#FDFDFD] rounded-[8px] h-[200px] hover:h-fit shadow-card1 group border-[#E1E3E5] border-[1px]">
                                 <div class="head flex items-center justify-between">
                                     <div class="flex items-center gap-3">
                                         <NuxtImg v-if="item?.chield" width="600" height="400" format="webp" quality="80" loading="lazy" class="xl:w-[60px] xl:h-[60px] lg:w-[60px] lg:h-[60px] w-[40px] h-[40px] rounded-full" :src="item?.chield?.image" :alt="item?.chield?.name" />
@@ -33,7 +33,7 @@
                                     </div>
                                     <h4 v-if="item?.chield" class="font-bold xl:text-[18px] lg:text-[18px] text-[16px] text-black"> {{ item?.chield?.age }} {{ $t('years') }} </h4>
                                 </div>
-                                <p class="text-black line-clamp-3 mt-6">
+                                <p class="text-black line-clamp-3 mt-6 group-hover:line-clamp-none">
                                   {{ item?.comment}}
                                 </p>
                             </div>

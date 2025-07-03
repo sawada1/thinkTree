@@ -10,7 +10,7 @@
                     <p class="text-black mb-5 mt-3 text-[18px] font-[400]">
                         {{ herosection.description }}
                     </p>
-                    <a class="mt-3" :href="`tel:${infoData?.whatsapp_number}`">
+                    <a class="mt-3"  :href="`https://wa.me/${infoData?.whatsapp_number}`" target="_blank">
                         <button
                             class="font-bold bg-orange flex transition-all hover:bg-primary items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
                             {{ $t('contact') }}

@@ -18,7 +18,7 @@
                 </div>
             </Vue3Marquee>
             <div class="flex items-center justify-center gap-8 mt-10">
-                      <a class="mt-3" :href="`tel:${infoData?.whatsapp_number}`">
+                      <a class="mt-3"  :href="`https://wa.me/${infoData?.whatsapp_number}`" target="_blank"> 
                         <button
                             class="font-bold bg-orange flex transition-all hover:bg-primary items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
                             {{ $t('contact') }}

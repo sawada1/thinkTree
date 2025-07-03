@@ -51,7 +51,7 @@
                     <!-- <nuxt-link :to="localePath({ path: '/order', query:{id: item.id} })" >
                         
                     </nuxt-link> -->
-                    <a class="mt-3" :href="`tel:${infoData?.whatsapp_number}`">
+                    <a class="mt-3"  :href="`https://wa.me/${infoData?.whatsapp_number}`" target="_blank">
                           <button class="w-full py-[10px] flex items-center justify-center rounded-[4px] bg-orange text-white font-bold"> {{ $t('subscribe') }} </button>
                     </a>
                 </div>

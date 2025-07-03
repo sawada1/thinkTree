@@ -29,7 +29,7 @@
                     {{ locale == 'ar' ? 'en' : 'ar' }} 
                 </button>
           
-                  <a class="hidden xl:block lg:block md:block"  :href="`tel:${generalData?.whatsapp_number}`">
+                  <a class="hidden xl:block lg:block md:block" :href="`https://wa.me/${generalData?.whatsapp_number}`" target="_blank">
                        <button class="font-bold bg-orange flex items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
                     {{ $t('contact') }}
                   </button>
@@ -67,7 +67,7 @@
                   {{ locale == 'ar' ? 'en' : 'ar' }} 
               </button>
 
-                    <a class="mt-3" :href="`tel:${generalData?.whatsapp_number}`">
+                    <a class="mt-3" :href="`https://wa.me/${generalData?.whatsapp_number}`" target="_blank">
                        <button class="font-bold bg-orange flex items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
                     {{ $t('contact') }}
                   </button>

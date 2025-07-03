@@ -19,7 +19,7 @@
                                 <h4 class="font-bold text-primary text-[28px]"> {{ item?.price }} {{ item?.currency }}</h4>
                                 <span class="text-red text-[14px] line-through"> {{ item?.old_price }} {{ item?.currency }} </span>
                             </div>
-                            <span> {{ item?.price_per_session }} {{ $t('pound1') }} / {{ $t('session') }} </span>
+                            <span> {{ item?.price_per_session }} {{ item?.currency }} / {{ $t('session') }} </span>
                             <div class="bg-lightGreen px-[16px] py-1 text-primary rounded-[8px]"> {{ item?.duration_monthelly }} {{ $t('month') }} -  {{ item?.number_of_session_per_week }} {{ $t('weekSession') }}
                             </div>
                             <span class="font-bold"> {{ item?.number_of_levels }} {{ $t('level') }}  - {{ item?.number_of_sessions }} {{ $t('sessions') }} </span>

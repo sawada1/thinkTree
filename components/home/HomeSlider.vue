@@ -1,5 +1,5 @@
 <template>
-      <div class="slider-container bg-lightGreen py-10 mt-[70px] ">
+      <div class="slider-container bg-lightGreen py-10 my-[70px] ">
             <div class="container">
                 <div class="flex items-center justify-center gap-5 mb-[24px]">
                     <h3 class="text-primary xl:text-[32px] lg:text-[32px] text-[26px] text-center xl:text-start lg:text-start font-bold"> {{ $t('slide1') }} </h3>

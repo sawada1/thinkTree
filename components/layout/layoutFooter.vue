@@ -132,7 +132,7 @@ const getNewsLetter = async()=>{
 
  watch(()=> locale.value , (val)=>{
   if(val){
-    getData();
+    // getData();
   }
  })
 

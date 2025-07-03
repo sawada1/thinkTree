@@ -1,5 +1,5 @@
 <template>
-    <layoutNav :linkTest="linkTest" />
+    <layoutNav :linkTest="linkTest" :generalData="generalData" />
  
         <slot />
         <div v-if="checkInt" class="fixed game-container flex flex-col items-center overflow-y-auto justify-center h-screen w-screen bg-[] top-0 game-container z-50" style="background: linear-gradient(0deg, rgba(37,109,32,1) 15%, rgba(253,187,45,1) 100%);">

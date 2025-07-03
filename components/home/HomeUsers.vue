@@ -18,13 +18,14 @@
                 </div>
             </Vue3Marquee>
             <div class="flex items-center justify-center gap-8 mt-10">
-                <nuxt-link class="" to="/contact">
-                    <button
-                        class="font-bold bg-orange transition-all hover:bg-primary flex items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
-                           {{ $t('contact') }}
-                    </button>
+                      <a class="mt-3" :href="`tel:${infoData?.whatsapp_number}`">
+                        <button
+                            class="font-bold bg-orange flex transition-all hover:bg-primary items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
+                            {{ $t('contact') }}
+                        </button>
+                    </a>
+             
 
-                </nuxt-link>
                 <!-- <button
                     class="font-bold border-[1px] border-orange transition-all hover:bg-primary hover:border-primary hover:text-white flex items-center justify-center text-orange w-[140px] py-[10px] rounded-[8px]">
                     {{ $t('more') }}
@@ -39,6 +40,9 @@ const { locale, setLocale } = useI18n();
 let props = defineProps({
     ourheroes:{
        required:true
+    },
+    infoData:{
+        required:true
     }
 })
 let personArr = ref([

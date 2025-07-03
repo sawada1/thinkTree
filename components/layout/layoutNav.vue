@@ -15,6 +15,9 @@
                    <nuxt-link class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/plans')">
                     {{ $t('plans') }}
                    </nuxt-link>
+                   <nuxt-link class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/contact')">
+                    {{ $t('contact') }}
+                   </nuxt-link>
                    <a v-if="linkTest?.Test_link" :href="linkTest?.Test_link" target="_blank" class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/test')">
                      {{ $t('test') }}
                    </a>
@@ -25,11 +28,12 @@
                 <button @click="changeLang()" class="text-orange hidden xl:block lg:block border-orange border py-[9px] px-3 capitalize font-bold rounded-[8px]">
                     {{ locale == 'ar' ? 'en' : 'ar' }} 
                 </button>
-                <nuxt-link class="hidden xl:block lg:block md:block" :to="localePath('/contact')">
-                    <button class="font-bold bg-orange flex items-center transition-all hover:bg-primary justify-center text-white w-[140px] py-[10px] rounded-[8px]">
-                      {{ $t('contact') }}
-                    </button>
-                </nuxt-link>
+          
+                  <a class="hidden xl:block lg:block md:block"  :href="`tel:${generalData?.whatsapp_number}`">
+                       <button class="font-bold bg-orange flex items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
+                    {{ $t('contact') }}
+                  </button>
+                    </a>
             </div>
             <button @click="activeNavMobile = !activeNavMobile" class="bar-icon w-[30px] h-[30px] block xl:hidden lg:hidden md:hidden">
                 
@@ -52,6 +56,9 @@
                    <nuxt-link @click="activeNavMobile = false" class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/plans')">
                    {{ $t('plans') }}
                    </nuxt-link>
+                   <nuxt-link @click="activeNavMobile = false" class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/contact')">
+                   {{ $t('contact') }}
+                   </nuxt-link>
                    <a v-if="linkTest?.Test_link" @click="activeNavMobile = false" :href="linkTest?.Test_link" target="_blank" class="text-black text-[18px] font-[400] hover:text-orange transition-all" :to="localePath('/test')">
                      {{ $t('test') }}
                    </a>
@@ -59,11 +66,13 @@
                   <button @click="changeLang() , activeNavMobile = false" class="text-orange border-orange border py-[9px] px-3 capitalize font-bold rounded-[8px]">
                   {{ locale == 'ar' ? 'en' : 'ar' }} 
               </button>
-                     <nuxt-link @click="activeNavMobile = false" :to="localePath('/contact')">
-                  <button class="font-bold bg-orange flex items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
+
+                    <a class="mt-3" :href="`tel:${generalData?.whatsapp_number}`">
+                       <button class="font-bold bg-orange flex items-center justify-center text-white w-[140px] py-[10px] rounded-[8px]">
                     {{ $t('contact') }}
                   </button>
-              </nuxt-link>
+                    </a>
+             
                   
                 </div>
 
@@ -80,7 +89,7 @@ import { NuxtImg } from '#components';
  let activeNavMobile = ref(false);
  const localePath = useLocalePath();
  const { locale, setLocale } = useI18n();
- let props = defineProps(["linkTest"]) 
+ let props = defineProps(["linkTest" , "generalData"]) 
 
 
 const changeLang = async () => {

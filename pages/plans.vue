@@ -1,6 +1,6 @@
 <template>
     <div class="mt-14">
-        <plans :Packages="generalData?.Packages"></plans>
+        <plans :Packages="generalData?.Packages" :infoData="infoData"></plans>
       
         <HomeSlider :Customer_rate="generalData?.Customer_rate"></HomeSlider>
         
@@ -22,8 +22,16 @@ const mainUrl = ref(process.client ? `${window.location.origin}${route.fullPath}
         }, 500);
     }
  }
+  const infoData = ref();
+ const getData2 = async()=>{
+    let result  = await useApi().get('footer');
+    if(result.status == 200){
+        infoData.value = result.data.data;
+    }
+ }
  onMounted(() => {
      getData();
+     getData2();
      useHead({
       title: `${t('plans')} | ThinkTree`,
       meta: [

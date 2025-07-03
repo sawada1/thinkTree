@@ -16,8 +16,8 @@
                         </div>
                         <div class="price flex flex-col items-center gap-[8px]">
                             <div class="flex items-center gap-4">
-                                <h4 class="font-bold text-primary text-[28px]"> {{ item?.price }} {{ $t('pound1') }}</h4>
-                                <span class="text-red text-[14px] line-through"> {{ item?.old_price }} {{ $t('pound2') }} </span>
+                                <h4 class="font-bold text-primary text-[28px]"> {{ item?.price }} {{ item?.currency }}</h4>
+                                <span class="text-red text-[14px] line-through"> {{ item?.old_price }} {{ item?.currency }} </span>
                             </div>
                             <span> {{ item?.price_per_session }} {{ $t('pound1') }} / {{ $t('session') }} </span>
                             <div class="bg-lightGreen px-[16px] py-1 text-primary rounded-[8px]"> {{ item?.duration_monthelly }} {{ $t('month') }} -  {{ item?.number_of_session_per_week }} {{ $t('weekSession') }}
@@ -48,10 +48,12 @@
                         </div>
                     </div>
                     <div v-if="item?.featured == 1" class="best bg-[#3BB44A] text-white px-3 py-1 rounded-r-[4px] absolute top-[55px] left-0"> {{ $t('best') }} </div>
-                    <nuxt-link :to="localePath({ path: '/order', query:{id: item.id} })" >
-                        <button class="w-full py-[10px] flex items-center justify-center rounded-[4px] bg-orange text-white font-bold"> {{ $t('subscribe') }} </button>
-                
-                    </nuxt-link>
+                    <!-- <nuxt-link :to="localePath({ path: '/order', query:{id: item.id} })" >
+                        
+                    </nuxt-link> -->
+                    <a class="mt-3" :href="`tel:${infoData?.whatsapp_number}`">
+                          <button class="w-full py-[10px] flex items-center justify-center rounded-[4px] bg-orange text-white font-bold"> {{ $t('subscribe') }} </button>
+                    </a>
                 </div>
       
             </div>
@@ -66,6 +68,9 @@ import { NuxtImg } from '#components';
 let props = defineProps({
     Packages:{
        required:true
+    },
+    infoData:{
+        required:true
     }
 })
 </script>

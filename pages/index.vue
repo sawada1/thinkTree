@@ -1,7 +1,7 @@
 <template>
     <div class="">
-        <HomeHero :herosection="generalData?.herosection"></HomeHero>
-        <HomeUsers :ourheroes="generalData?.ourheroes"></HomeUsers>
+        <HomeHero :herosection="generalData?.herosection" :infoData="infoData"></HomeHero>
+        <HomeUsers :ourheroes="generalData?.ourheroes" :infoData="infoData"></HomeUsers>
         <HomeNumbers :numbers="generalData?.numbers" :targetNumbers="targetNumbers"></HomeNumbers>
         <HomeAchievement :Achievement="generalData?.Achievement"></HomeAchievement>
         <HomeWhy :whythinktree="generalData?.whythinktree"></HomeWhy>
@@ -23,9 +23,8 @@
                 </div>
             </div>
         </div>
-        <plans :Packages="generalData?.Packages"></plans>
-
         <HomeSlider :Customer_rate="generalData?.Customer_rate"></HomeSlider>
+        <plans :Packages="generalData?.Packages" :infoData="infoData"></plans>
 
         <HomeCertificate :Certificate_Image="generalData?.Certificate_Image"></HomeCertificate>
 
@@ -42,6 +41,14 @@ const route = useRoute();
 const { locale, setLocale , t } = useI18n();
 const mainUrl = ref(process.client ? `${window.location.origin}${route.fullPath}` : '');
 let targetNumbers = ref([0, 0, 0, 0]); 
+
+ const infoData = ref();
+ const getData2 = async()=>{
+    let result  = await useApi().get('footer');
+    if(result.status == 200){
+        infoData.value = result.data.data;
+    }
+ }
 const getData = async () => {
     let result = await useApi().get('general');
     if (result.status == 200) {
@@ -74,6 +81,7 @@ const getMeta = async () => {
 onMounted(() => {
     getMeta();
     getData();
+    getData2();
 
 });
 
